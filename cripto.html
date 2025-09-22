@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Compra Cripto - CriptoInvestment</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto', Arial, sans-serif;
+      background: #F1F1F1;
+      color: #727272;
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+
+    /* Tipografía basada en el UI Kit */
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Rajdhani', Arial, sans-serif;
+      font-weight: 700;
+      color: #001726;
+      text-transform: capitalize;
+    }
+
+    h1 { font-size: 57px; line-height: 1.1; letter-spacing: -2px; }
+    h2 { font-size: 44px; line-height: 1.1; letter-spacing: -1px; }
+    h3 { font-size: 33px; line-height: 1.2; letter-spacing: -1px; }
+    h4 { font-size: 28px; line-height: 1.2; }
+    h5 { font-size: 21px; line-height: 1.2; }
+    h6 { font-size: 18px; line-height: 1.2; letter-spacing: 2px; text-transform: uppercase; color: #0099FF; }
+
+    /* Colores del UI Kit */
+    .primary { color: #0099FF; }
+    .secondary { color: #001726; }
+    .accent { color: #00FF99; }
+    .accent2 { color: #9900FF; }
+    .text { color: #727272; }
+
+    /* Header */
+    .header {
+      background: rgba(0, 23, 38, 0.9);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 15px 0;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+
+    .header-content {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+    }
+
+    .logo {
+      font-family: 'Rajdhani', Arial, sans-serif;
+      font-size: 24px;
+      font-weight: 700;
+      color: #FFFFFF;
+      text-decoration: none;
+    }
+
+    .nav {
+      display: flex;
+      gap: 25px;
+    }
+
+    .nav a {
+      color: #FFFFFF;
+      text-decoration: none;
+      font-family: 'Rajdhani', Arial, sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0px;
+      transition: color 0.3s ease;
+    }
+
+    .nav a:hover, .nav a.active {
+      color: #00CCFF;
+    }
+
+    .btn {
+      background: #00FF99;
+      color: #001726;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 5px;
+      font-family: 'Rajdhani', Arial, sans-serif;
+      font-size: 17px;
+      font-weight: 500;
+      text-transform: capitalize;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .btn:hover {
+      background: #9900FF;
+      color: #FFFFFF;
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Hero Section */
+    .hero {
+      position: relative;
+      min-height: 70vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #FFFFFF;
+      padding: 100px 20px 50px;
+      overflow: hidden;
+      background: linear-gradient(135deg, #001726 0%, #0099FF 50%, #00FF99 100%);
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="crypto" patternUnits="userSpaceOnUse" width="20" height="20"><circle cx="10" cy="10" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23crypto)"/></svg>');
+      opacity: 0.3;
+    }
+
+    .hero-content {
+      max-width: 900px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero h1 {
+      font-size: 73px;
+      color: #FFFFFF;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .hero p {
+      font-size: 20px;
+      margin-bottom: 30px;
+      opacity: 0.9;
+      line-height: 1.6;
+    }
+
+    .hero-features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
+    }
+
+    .hero-feature {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      padding: 25px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .hero-feature h3 {
+      color: #00FF99;
+      margin-bottom: 10px;
+      font-size: 24px;
+    }
+
+    .hero-feature p {
+      font-size: 14px;
+      opacity: 0.9;
+    }
+
+    /* Sección de Contacto */
+    .contact-section {
+      background: #FFFFFF;
+      padding: 80px 20px;
+      width: 100vw;
+      position: relative;
+      left: 50%;
+      right: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
+    }
+
+    .contact-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    .contact-info h2 {
+      margin-bottom: 30px;
+      color: #001726;
+    }
+
+    .contact-info p {
+      font-size: 18px;
+      margin-bottom: 40px;
+      line-height: 1.6;
+    }
+
+    .contact-methods {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .contact-method {
+      display: flex;
+      align-items: center;
+      padding: 20px;
+      background: #F8F9FA;
+      border-radius: 10px;
+      border-left: 4px solid #0099FF;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .contact-method:hover {
+      transform: translateX(5px);
+      box-shadow: 0 5px 15px rgba(0, 153, 255, 0.1);
+    }
+
+    .contact-method-icon {
+      font-size: 24px;
+      margin-right: 15px;
+      color: #0099FF;
+    }
+
+    .contact-method-info h4 {
+      color: #001726;
+      margin-bottom: 5px;
+      font-size: 18px;
+    }
+
+    .contact-method-info p {
+      color: #727272;
+      margin: 0;
+      font-size: 16px;
+    }
+
+    .contact-method-info a {
+      color: #0099FF;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .contact-method-info a:hover {
+      color: #00FF99;
+    }
+
+    /* Formulario */
+    .contact-form {
+      background: #F8F9FA;
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .contact-form h3 {
+      margin-bottom: 30px;
+      color: #001726;
+      text-align: center;
+    }
+
+    .form-group {
+      margin-bottom: 25px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: #001726;
+      font-family: 'Rajdhani', Arial, sans-serif;
+      font-size: 16px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 15px;
+      border: 2px solid #E9ECEF;
+      border-radius: 8px;
+      font-size: 16px;
+      transition: border-color 0.3s ease;
+      font-family: 'Roboto', Arial, sans-serif;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: #0099FF;
+      box-shadow: 0 0 0 3px rgba(0, 153, 255, 0.1);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .btn-submit {
+      width: 100%;
+      background: linear-gradient(135deg, #0099FF 0%, #00FF99 100%);
+      color: white;
+      padding: 15px;
+      border: none;
+      border-radius: 8px;
+      font-size: 18px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      font-family: 'Rajdhani', Arial, sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .btn-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(0, 153, 255, 0.3);
+    }
+
+    /* Footer */
+    .footer {
+      background: #001726;
+      color: #FFFFFF;
+      padding: 50px 20px 20px;
+      text-align: center;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: #FFFFFF;
+      text-decoration: none;
+      font-size: 14px;
+      opacity: 0.8;
+      transition: opacity 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      opacity: 1;
+      color: #00FF99;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 44px; }
+      .hero p { font-size: 16px; }
+      h1 { font-size: 36px; }
+      h2 { font-size: 30px; }
+      h3 { font-size: 24px; }
+      .nav { display: none; }
+      .header-content { justify-content: space-between; }
+      
+      .hero {
+        padding: 80px 15px 30px;
+      }
+
+      .hero-features {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .contact-form {
+        padding: 30px 20px;
+      }
+    }
+
+    /* Animaciones */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-in {
+      animation: fadeInUp 0.8s ease-out;
+    }
+
+    /* Estilos para las tarjetas de criptomonedas */
+    .crypto-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 153, 255, 0.15);
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="header-content">
+      <a href="inicio.html" class="logo">CriptoInvestment</a>
+      <nav class="nav">
+        <a href="inicio.html">Inicio</a>
+        <a href="la-empresa.html">La Empresa</a>
+        <a href="cripto.html" class="active">Compra Cripto</a>
+        <a href="opciones-mercado.html">Opciones de Mercado</a>
+        <a href="#glosario">Glosario</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+      <a href="#" class="btn">Get Started</a>
+    </div>
+  </header>
+
+  <!-- Contenido Principal -->
+  <main>
+    <!-- Hero Section -->
+    <section class="hero fade-in">
+      <div class="hero-content">
+        <h1>Compra Criptomonedas de Forma Segura</h1>
+        <p>
+          Accede al mundo de las criptomonedas con la confianza y seguridad que solo CriptoInvestment puede ofrecerte. 
+          Nuestro equipo de expertos te acompaña en cada paso, desde tu primera compra hasta estrategias avanzadas de inversión.
+        </p>
+        <p>
+          Con nuestra plataforma autorizada como PSAV y alianzas estratégicas con exchanges reconocidos, 
+          garantizamos transacciones transparentes, seguras y al mejor precio del mercado.
+        </p>
+      </div>
+    </section>
+
+    <!-- Sección de Criptomonedas Disponibles -->
+    <section class="crypto-section fade-in" style="background: #F8F9FA; padding: 80px 20px; width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw;">
+      <div style="max-width: 1280px; margin: 0 auto; padding: 0 20px;">
+        <div style="text-align: center; margin-bottom: 60px;">
+          <h6 style="color: #0099FF; margin-bottom: 20px; opacity: 0.9;">💰 CRIPTOMONEDAS DISPONIBLES</h6>
+          <h2 style="color: #001726; margin-bottom: 30px;">Conoce cuáles son las criptomonedas que tenemos listadas para operar desde tu cuenta</h2>
+          <p style="font-size: 18px; color: #727272; max-width: 800px; margin: 0 auto; line-height: 1.6;">
+            Accede a las principales criptomonedas del mercado con la seguridad y confianza de una plataforma regulada. 
+            Todas nuestras operaciones están respaldadas por exchanges reconocidos y supervisadas por nuestro equipo de expertos.
+          </p>
+        </div>
+
+        <div class="crypto-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px;">
+          <!-- Bitcoin -->
+          <div class="crypto-card" style="background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; border-left: 4px solid #F7931A;">
+            <div style="display: flex; align-items: center; gap: 15px;">
+              <img src="https://cryptologos.cc/logos/bitcoin-btc-logo.png" alt="Bitcoin" style="width: 40px; height: 40px;">
+              <div>
+                <h4 style="color: #001726; margin: 0; font-size: 18px;">BITCOIN</h4>
+                <p style="color: #727272; margin: 0; font-size: 14px; font-weight: 600;">BTC</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Ethereum -->
+          <div class="crypto-card" style="background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; border-left: 4px solid #627EEA;">
+            <div style="display: flex; align-items: center; gap: 15px;">
+              <img src="https://cryptologos.cc/logos/ethereum-eth-logo.png" alt="Ethereum" style="width: 40px; height: 40px;">
+              <div>
+                <h4 style="color: #001726; margin: 0; font-size: 18px;">ETHEREUM</h4>
+                <p style="color: #727272; margin: 0; font-size: 14px; font-weight: 600;">ETH</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Litecoin -->
+          <div class="crypto-card" style="background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; border-left: 4px solid #BFBBBB;">
+            <div style="display: flex; align-items: center; gap: 15px;">
+              <img src="https://cryptologos.cc/logos/litecoin-ltc-logo.png" alt="Litecoin" style="width: 40px; height: 40px;">
+              <div>
+                <h4 style="color: #001726; margin: 0; font-size: 18px;">LITECOIN</h4>
+                <p style="color: #727272; margin: 0; font-size: 14px; font-weight: 600;">LTC</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Ripple -->
+          <div class="crypto-card" style="background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; border-left: 4px solid #23292F;">
+            <div style="display: flex; align-items: center; gap: 15px;">
+              <img src="https://cryptologos.cc/logos/xrp-xrp-logo.png" alt="XRP" style="width: 40px; height: 40px;">
+              <div>
+                <h4 style="color: #001726; margin: 0; font-size: 18px;">RIPPLE</h4>
+                <p style="color: #727272; margin: 0; font-size: 14px; font-weight: 600;">XRP</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bitcoin Cash -->
+          <div class="crypto-card" style="background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; border-left: 4px solid #8DC351;">
+            <div style="display: flex; align-items: center; gap: 15px;">
+              <img src="https://cryptologos.cc/logos/bitcoin-cash-bch-logo.png" alt="Bitcoin Cash" style="width: 40px; height: 40px;">
+              <div>
+                <h4 style="color: #001726; margin: 0; font-size: 18px;">BITCOIN CASH</h4>
+                <p style="color: #727272; margin: 0; font-size: 14px; font-weight: 600;">BCH</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dogecoin -->
+          <div class="crypto-card" style="background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; border-left: 4px solid #C2A633;">
+            <div style="display: flex; align-items: center; gap: 15px;">
+              <img src="https://cryptologos.cc/logos/dogecoin-doge-logo.png" alt="Dogecoin" style="width: 40px; height: 40px;">
+              <div>
+                <h4 style="color: #001726; margin: 0; font-size: 18px;">DOGECOIN</h4>
+                <p style="color: #727272; margin: 0; font-size: 14px; font-weight: 600;">DOGE</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- DAI -->
+          <div class="crypto-card" style="background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; border-left: 4px solid #F5AC37;">
+            <div style="display: flex; align-items: center; gap: 15px;">
+              <img src="https://cryptologos.cc/logos/multi-collateral-dai-dai-logo.png" alt="DAI" style="width: 40px; height: 40px;">
+              <div>
+                <h4 style="color: #001726; margin: 0; font-size: 18px;">DAI</h4>
+                <p style="color: #727272; margin: 0; font-size: 14px; font-weight: 600;">DAI</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Cardano -->
+          <div class="crypto-card" style="background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; border-left: 4px solid #0033AD;">
+            <div style="display: flex; align-items: center; gap: 15px;">
+              <img src="https://cryptologos.cc/logos/cardano-ada-logo.png" alt="Cardano" style="width: 40px; height: 40px;">
+              <div>
+                <h4 style="color: #001726; margin: 0; font-size: 18px;">CARDANO</h4>
+                <p style="color: #727272; margin: 0; font-size: 14px; font-weight: 600;">ADA</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- USD Coin -->
+          <div class="crypto-card" style="background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; border-left: 4px solid #2775CA;">
+            <div style="display: flex; align-items: center; gap: 15px;">
+              <img src="https://cryptologos.cc/logos/usd-coin-usdc-logo.png" alt="USD Coin" style="width: 40px; height: 40px;">
+              <div>
+                <h4 style="color: #001726; margin: 0; font-size: 18px;">USD COIN</h4>
+                <p style="color: #727272; margin: 0; font-size: 14px; font-weight: 600;">USDC</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tether -->
+          <div class="crypto-card" style="background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; border-left: 4px solid #26A17B;">
+            <div style="display: flex; align-items: center; gap: 15px;">
+              <img src="https://cryptologos.cc/logos/tether-usdt-logo.png" alt="Tether" style="width: 40px; height: 40px;">
+              <div>
+                <h4 style="color: #001726; margin: 0; font-size: 18px;">TETHER</h4>
+                <p style="color: #727272; margin: 0; font-size: 14px; font-weight: 600;">USDT</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Chainlink -->
+          <div class="crypto-card" style="background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; border-left: 4px solid #375BD2;">
+            <div style="display: flex; align-items: center; gap: 15px;">
+              <img src="https://cryptologos.cc/logos/chainlink-link-logo.png" alt="Chainlink" style="width: 40px; height: 40px;">
+              <div>
+                <h4 style="color: #001726; margin: 0; font-size: 18px;">CHAINLINK</h4>
+                <p style="color: #727272; margin: 0; font-size: 14px; font-weight: 600;">LINK</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Uniswap -->
+          <div class="crypto-card" style="background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; border-left: 4px solid #FF007A;">
+            <div style="display: flex; align-items: center; gap: 15px;">
+              <img src="https://cryptologos.cc/logos/uniswap-uni-logo.png" alt="Uniswap" style="width: 40px; height: 40px;">
+              <div>
+                <h4 style="color: #001726; margin: 0; font-size: 18px;">UNISWAP</h4>
+                <p style="color: #727272; margin: 0; font-size: 14px; font-weight: 600;">UNI</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stellar -->
+          <div class="crypto-card" style="background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; border-left: 4px solid #7D00FF;">
+            <div style="display: flex; align-items: center; gap: 15px;">
+              <img src="https://cryptologos.cc/logos/stellar-xlm-logo.png" alt="Stellar" style="width: 40px; height: 40px;">
+              <div>
+                <h4 style="color: #001726; margin: 0; font-size: 18px;">STELLAR</h4>
+                <p style="color: #727272; margin: 0; font-size: 14px; font-weight: 600;">XLM</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Solana -->
+          <div class="crypto-card" style="background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; border-left: 4px solid #9945FF;">
+            <div style="display: flex; align-items: center; gap: 15px;">
+              <img src="https://cryptologos.cc/logos/solana-sol-logo.png" alt="Solana" style="width: 40px; height: 40px;">
+              <div>
+                <h4 style="color: #001726; margin: 0; font-size: 18px;">SOLANA</h4>
+                <p style="color: #727272; margin: 0; font-size: 14px; font-weight: 600;">SOL</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Polkadot -->
+          <div class="crypto-card" style="background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; border-left: 4px solid #E6007A;">
+            <div style="display: flex; align-items: center; gap: 15px;">
+              <img src="https://cryptologos.cc/logos/polkadot-new-dot-logo.png" alt="Polkadot" style="width: 40px; height: 40px;">
+              <div>
+                <h4 style="color: #001726; margin: 0; font-size: 18px;">POLKADOT</h4>
+                <p style="color: #727272; margin: 0; font-size: 14px; font-weight: 600;">DOT</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Decentraland -->
+          <div class="crypto-card" style="background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; border-left: 4px solid #FF2D55;">
+            <div style="display: flex; align-items: center; gap: 15px;">
+              <img src="https://cryptologos.cc/logos/decentraland-mana-logo.png" alt="Decentraland" style="width: 40px; height: 40px;">
+              <div>
+                <h4 style="color: #001726; margin: 0; font-size: 18px;">DECENTRALAND</h4>
+                <p style="color: #727272; margin: 0; font-size: 14px; font-weight: 600;">MANA</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Avalanche -->
+          <div class="crypto-card" style="background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; border-left: 4px solid #E84142;">
+            <div style="display: flex; align-items: center; gap: 15px;">
+              <img src="https://cryptologos.cc/logos/avalanche-avax-logo.png" alt="Avalanche" style="width: 40px; height: 40px;">
+              <div>
+                <h4 style="color: #001726; margin: 0; font-size: 18px;">AVALANCHE</h4>
+                <p style="color: #727272; margin: 0; font-size: 14px; font-weight: 600;">AVAX</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Call to Action -->
+        <div style="text-align: center; margin-top: 50px;">
+          <p style="font-size: 18px; color: #727272; margin-bottom: 30px;">
+            ¿No encuentras la criptomoneda que buscas? Contáctanos y te ayudamos a encontrar la mejor opción para tu perfil de inversión.
+          </p>
+          <a href="#contact-form" class="btn" style="background: linear-gradient(135deg, #0099FF 0%, #00FF99 100%); color: white; padding: 15px 30px; font-size: 18px;">
+            Consultar Disponibilidad
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección de Contacto -->
+    <section class="contact-section fade-in">
+      <div class="contact-container">
+        <div class="contact-grid">
+          <!-- Información de Contacto -->
+          <div class="contact-info">
+            <h2>¡Comienza tu Inversión Hoy!</h2>
+            <p>
+              Nuestro equipo de asesores especializados está listo para ayudarte a dar el primer paso 
+              en el mundo de las criptomonedas. Contáctanos a través de cualquiera de nuestros canales 
+              y recibe asesoramiento personalizado sin compromiso.
+            </p>
+
+            <div class="contact-methods">
+              <div class="contact-method">
+                <div class="contact-method-icon">📱</div>
+                <div class="contact-method-info">
+                  <h4>WhatsApp</h4>
+                  <p><a href="https://wa.me/541122516168" target="_blank">11.2251.6168</a></p>
+                </div>
+              </div>
+
+              <div class="contact-method">
+                <div class="contact-method-icon">✈️</div>
+                <div class="contact-method-info">
+                  <h4>Telegram</h4>
+                  <p><a href="https://t.me/+541122516168" target="_blank">11.2251.6168</a></p>
+                </div>
+              </div>
+
+              <div class="contact-method">
+                <div class="contact-method-icon">📞</div>
+                <div class="contact-method-info">
+                  <h4>Teléfono</h4>
+                  <p><a href="tel:+541122516168">11.2251.6168</a></p>
+                </div>
+              </div>
+
+              <div class="contact-method">
+                <div class="contact-method-icon">✉️</div>
+                <div class="contact-method-info">
+                  <h4>Email</h4>
+                  <p><a href="mailto:info@criptoinvestments.com">info@criptoinvestments.com</a></p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Formulario de Contacto -->
+          <div class="contact-form">
+            <h3>Solicita tu Asesoramiento Gratuito</h3>
+            <form id="contactForm">
+              <div class="form-group">
+                <label for="nombre">Nombre Completo *</label>
+                <input type="text" id="nombre" name="nombre" required>
+              </div>
+
+              <div class="form-group">
+                <label for="email">Email *</label>
+                <input type="email" id="email" name="email" required>
+              </div>
+
+              <div class="form-group">
+                <label for="telefono">Teléfono (Opcional)</label>
+                <input type="tel" id="telefono" name="telefono">
+              </div>
+
+              <div class="form-group">
+                <label for="mensaje">¿En qué podemos ayudarte?</label>
+                <textarea id="mensaje" name="mensaje" placeholder="Cuéntanos sobre tu interés en invertir en criptomonedas..."></textarea>
+              </div>
+
+              <button type="submit" class="btn-submit">Solicitar Asesoramiento</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-links">
+        <a href="#">Términos de Servicio</a>
+        <a href="#">Política de Privacidad</a>
+        <a href="#">Soporte</a>
+        <a href="#">API</a>
+        <a href="#">Blog</a>
+      </div>
+      <p>&copy; 2025 CriptoInvestment. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Cargar animaciones al hacer scroll
+    document.addEventListener('DOMContentLoaded', function() {
+      const elements = document.querySelectorAll('.fade-in');
+      elements.forEach(el => {
+        el.style.animation = 'fadeInUp 0.8s ease-out';
+      });
+    });
+
+    // Manejar envío del formulario
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Aquí puedes agregar la lógica para enviar el formulario
+      // Por ahora, solo mostramos un mensaje de confirmación
+      
+      const nombre = document.getElementById('nombre').value;
+      const email = document.getElementById('email').value;
+      
+      if (nombre && email) {
+        alert(`¡Gracias ${nombre}! Hemos recibido tu solicitud. Nos pondremos en contacto contigo a través de ${email} en las próximas 24 horas.`);
+        
+        // Limpiar formulario
+        this.reset();
+      }
+    });
+  </script>
+</body>
+</html>

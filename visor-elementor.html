@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CriptoInvestment - Visor de Templates Elementor</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto', Arial, sans-serif;
+      background: #F1F1F1;
+      color: #727272;
+      line-height: 1.5;
+    }
+
+    /* Tipografía basada en el UI Kit de Elementor */
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Rajdhani', Arial, sans-serif;
+      font-weight: 700;
+      color: #001726;
+      text-transform: capitalize;
+    }
+
+    h1 { font-size: 57px; line-height: 1.1; letter-spacing: -2px; }
+    h2 { font-size: 44px; line-height: 1.1; letter-spacing: -1px; }
+    h3 { font-size: 33px; line-height: 1.2; letter-spacing: -1px; }
+    h4 { font-size: 28px; line-height: 1.2; }
+    h5 { font-size: 21px; line-height: 1.2; }
+    h6 { font-size: 18px; line-height: 1.2; letter-spacing: 2px; text-transform: uppercase; color: #0099FF; }
+
+    /* Colores del UI Kit */
+    .primary { color: #0099FF; }
+    .secondary { color: #001726; }
+    .accent { color: #00FF99; }
+    .accent2 { color: #9900FF; }
+    .text { color: #727272; }
+
+    /* Contenedor principal */
+    .elementor-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Secciones de Elementor */
+    .elementor-section {
+      position: relative;
+      width: 100%;
+    }
+
+    .elementor-column {
+      position: relative;
+      min-height: 1px;
+    }
+
+    /* Widgets de Elementor */
+    .elementor-widget {
+      position: relative;
+    }
+
+    .elementor-widget-heading h1,
+    .elementor-widget-heading h2,
+    .elementor-widget-heading h3,
+    .elementor-widget-heading h4,
+    .elementor-widget-heading h5,
+    .elementor-widget-heading h6 {
+      margin: 0;
+    }
+
+    .elementor-widget-text-editor {
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
+    .elementor-widget-button .elementor-button {
+      background: #00FF99;
+      color: #001726;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 5px;
+      font-family: 'Rajdhani', Arial, sans-serif;
+      font-size: 17px;
+      font-weight: 500;
+      text-transform: capitalize;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .elementor-widget-button .elementor-button:hover {
+      background: #9900FF;
+      color: #FFFFFF;
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    .elementor-widget-image img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    /* Backgrounds de sección */
+    .elementor-background-slideshow {
+      background: linear-gradient(135deg, rgba(0, 23, 38, 0.9) 0%, rgba(0, 23, 38, 0.6) 60%), 
+                  url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%23001726" width="1200" height="800"/><circle fill="%230099FF" opacity="0.1" cx="200" cy="200" r="100"/><circle fill="%2300FF99" opacity="0.1" cx="800" cy="400" r="150"/><circle fill="%239900FF" opacity="0.1" cx="1000" cy="600" r="80"/></svg>');
+      background-size: cover;
+      background-position: center;
+      color: #FFFFFF;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 100px 20px 50px;
+    }
+
+    .elementor-background-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 1;
+    }
+
+    .elementor-container {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Grid system */
+    .elementor-row {
+      display: flex;
+      flex-wrap: wrap;
+      margin: 0 -10px;
+    }
+
+    .elementor-column {
+      padding: 0 10px;
+      flex: 1;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      h1 { font-size: 36px; }
+      h2 { font-size: 30px; }
+      h3 { font-size: 24px; }
+      .elementor-row {
+        flex-direction: column;
+      }
+    }
+
+    /* Controles del visor */
+    .viewer-controls {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #FFFFFF;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      z-index: 9999;
+      min-width: 300px;
+    }
+
+    .viewer-controls h3 {
+      margin-bottom: 15px;
+      font-size: 18px;
+    }
+
+    .viewer-controls input[type="file"] {
+      margin-bottom: 10px;
+      padding: 8px;
+      border: 1px solid #E6E6E6;
+      border-radius: 5px;
+      width: 100%;
+    }
+
+    .viewer-controls button {
+      background: #0099FF;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-right: 10px;
+      margin-bottom: 10px;
+    }
+
+    .viewer-controls button:hover {
+      background: #0077CC;
+    }
+
+    .template-info {
+      background: #f8f9fa;
+      padding: 10px;
+      border-radius: 5px;
+      margin-top: 10px;
+      font-size: 12px;
+    }
+
+    #renderOutput {
+      margin-top: 20px;
+    }
+
+    .error-message {
+      background: #ffebee;
+      color: #c62828;
+      padding: 10px;
+      border-radius: 5px;
+      margin: 10px 0;
+    }
+
+    .success-message {
+      background: #e8f5e8;
+      color: #2e7d32;
+      padding: 10px;
+      border-radius: 5px;
+      margin: 10px 0;
+    }
+  </style>
+</head>
+<body>
+  <!-- Controles del Visor -->
+  <div class="viewer-controls">
+    <h3>🎛️ Visor de Templates Elementor</h3>
+    
+    <label for="jsonFile">Seleccionar Template JSON:</label>
+    <input type="file" id="jsonFile" accept=".json" />
+    
+    <button onclick="loadDefaultTemplate()">📄 Cargar Homepage</button>
+    <button onclick="clearOutput()">🗑️ Limpiar</button>
+    
+    <div class="template-info" id="templateInfo">
+      <strong>Instrucciones:</strong><br>
+      1. Selecciona un archivo .json de template<br>
+      2. O usa "Cargar Homepage" para el template por defecto<br>
+      3. Modifica el JSON y recarga para ver cambios
+    </div>
+    
+    <div id="messages"></div>
+  </div>
+
+  <!-- Contenido renderizado -->
+  <div id="renderOutput">
+    <div style="text-align: center; padding: 100px 20px; color: #727272;">
+      <h2>👆 Selecciona un template JSON para comenzar</h2>
+      <p>Usa los controles de arriba para cargar un template de Elementor</p>
+    </div>
+  </div>
+
+  <script>
+    // Variables globales
+    let currentTemplate = null;
+
+    // Event listener para el input de archivo
+    document.getElementById('jsonFile').addEventListener('change', function(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+      
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        try {
+          const templateData = JSON.parse(e.target.result);
+          loadTemplate(templateData, file.name);
+        } catch (err) {
+          showMessage('Error al parsear JSON: ' + err.message, 'error');
+        }
+      };
+      reader.readAsText(file);
+    });
+
+    // Función para cargar template por defecto
+    async function loadDefaultTemplate() {
+      try {
+        const response = await fetch('./templates/homepage.json');
+        if (!response.ok) {
+          throw new Error('No se pudo cargar el template homepage.json');
+        }
+        const templateData = await response.json();
+        loadTemplate(templateData, 'homepage.json');
+      } catch (err) {
+        showMessage('Error: ' + err.message + '. Asegúrate de que el archivo templates/homepage.json existe.', 'error');
+      }
+    }
+
+    // Función principal para cargar y renderizar template
+    function loadTemplate(templateData, fileName) {
+      currentTemplate = templateData;
+      
+      showMessage(`Template "${fileName}" cargado exitosamente`, 'success');
+      
+      // Mostrar información del template
+      document.getElementById('templateInfo').innerHTML = `
+        <strong>Template Cargado:</strong> ${fileName}<br>
+        <strong>Título:</strong> ${templateData.title || 'Sin título'}<br>
+        <strong>Tipo:</strong> ${templateData.type || 'Sin tipo'}<br>
+        <strong>Versión:</strong> ${templateData.version || 'Sin versión'}
+      `;
+      
+      // Renderizar el template
+      renderTemplate(templateData);
+    }
+
+    // Función para renderizar el template de Elementor
+    function renderTemplate(templateData) {
+      const output = document.getElementById('renderOutput');
+      let html = '';
+      
+      if (templateData.content && Array.isArray(templateData.content)) {
+        templateData.content.forEach(section => {
+          html += renderSection(section);
+        });
+      }
+      
+      output.innerHTML = html;
+    }
+
+    // Función para renderizar una sección
+    function renderSection(section) {
+      let sectionHtml = '';
+      let sectionClasses = 'elementor-section';
+      let sectionStyles = '';
+      
+      // Aplicar configuraciones de la sección
+      if (section.settings) {
+        // Background
+        if (section.settings.background_background === 'slideshow') {
+          sectionClasses += ' elementor-background-slideshow';
+        }
+        
+        // Padding
+        if (section.settings.padding) {
+          const padding = section.settings.padding;
+          sectionStyles += `padding: ${padding.top || 0}${padding.unit || 'px'} ${padding.right || 0}${padding.unit || 'px'} ${padding.bottom || 0}${padding.unit || 'px'} ${padding.left || 0}${padding.unit || 'px'};`;
+        }
+        
+        // Content width
+        if (section.settings.content_width) {
+          sectionStyles += `max-width: ${section.settings.content_width.size}${section.settings.content_width.unit};`;
+        }
+      }
+      
+      sectionHtml += `<section class="${sectionClasses}" style="${sectionStyles}">`;
+      
+      // Overlay si existe
+      if (section.settings && section.settings.background_overlay_background) {
+        sectionHtml += '<div class="elementor-background-overlay"></div>';
+      }
+      
+      sectionHtml += '<div class="elementor-container">';
+      
+      // Renderizar columnas
+      if (section.elements && Array.isArray(section.elements)) {
+        sectionHtml += '<div class="elementor-row">';
+        section.elements.forEach(column => {
+          sectionHtml += renderColumn(column);
+        });
+        sectionHtml += '</div>';
+      }
+      
+      sectionHtml += '</div></section>';
+      
+      return sectionHtml;
+    }
+
+    // Función para renderizar una columna
+    function renderColumn(column) {
+      let columnHtml = '';
+      let columnStyles = '';
+      
+      // Configuraciones de columna
+      if (column.settings) {
+        if (column.settings._column_size) {
+          columnStyles += `flex: 0 0 ${column.settings._column_size}%;`;
+        }
+        if (column.settings._inline_size) {
+          columnStyles += `flex: 0 0 ${column.settings._inline_size}%;`;
+        }
+      }
+      
+      columnHtml += `<div class="elementor-column" style="${columnStyles}">`;
+      
+      // Renderizar widgets/elementos
+      if (column.elements && Array.isArray(column.elements)) {
+        column.elements.forEach(element => {
+          if (element.elType === 'widget') {
+            columnHtml += renderWidget(element);
+          } else if (element.elType === 'section') {
+            columnHtml += renderSection(element);
+          }
+        });
+      }
+      
+      columnHtml += '</div>';
+      
+      return columnHtml;
+    }
+
+    // Función para renderizar un widget
+    function renderWidget(widget) {
+      let widgetHtml = '';
+      
+      switch (widget.widgetType) {
+        case 'heading':
+          widgetHtml = renderHeadingWidget(widget);
+          break;
+        case 'text-editor':
+          widgetHtml = renderTextWidget(widget);
+          break;
+        case 'button':
+          widgetHtml = renderButtonWidget(widget);
+          break;
+        case 'image':
+          widgetHtml = renderImageWidget(widget);
+          break;
+        case 'nav-menu':
+          widgetHtml = renderNavMenuWidget(widget);
+          break;
+        case 'icon':
+          widgetHtml = renderIconWidget(widget);
+          break;
+        default:
+          widgetHtml = `<div class="elementor-widget elementor-widget-${widget.widgetType}">
+            <div style="padding: 20px; background: #f0f0f0; border: 1px dashed #ccc; text-align: center;">
+              Widget: ${widget.widgetType}<br>
+              <small>ID: ${widget.id}</small>
+            </div>
+          </div>`;
+      }
+      
+      return widgetHtml;
+    }
+
+    // Renderizar widget de heading
+    function renderHeadingWidget(widget) {
+      const settings = widget.settings || {};
+      const title = settings.title || 'Título';
+      const size = settings.size || 'h2';
+      
+      return `<div class="elementor-widget elementor-widget-heading">
+        <${size}>${title}</${size}>
+      </div>`;
+    }
+
+    // Renderizar widget de texto
+    function renderTextWidget(widget) {
+      const settings = widget.settings || {};
+      const editor = settings.editor || 'Texto de ejemplo';
+      
+      return `<div class="elementor-widget elementor-widget-text-editor">
+        <div>${editor}</div>
+      </div>`;
+    }
+
+    // Renderizar widget de botón
+    function renderButtonWidget(widget) {
+      const settings = widget.settings || {};
+      const text = settings.text || 'Botón';
+      const link = settings.link?.url || '#';
+      
+      return `<div class="elementor-widget elementor-widget-button">
+        <a href="${link}" class="elementor-button">${text}</a>
+      </div>`;
+    }
+
+    // Renderizar widget de imagen
+    function renderImageWidget(widget) {
+      const settings = widget.settings || {};
+      const image = settings.image;
+      
+      if (image && image.url) {
+        return `<div class="elementor-widget elementor-widget-image">
+          <img src="${image.url}" alt="${image.alt || ''}" />
+        </div>`;
+      }
+      
+      return `<div class="elementor-widget elementor-widget-image">
+        <div style="background: #f0f0f0; padding: 40px; text-align: center; border: 1px dashed #ccc;">
+          📷 Imagen no disponible
+        </div>
+      </div>`;
+    }
+
+    // Renderizar widget de menú de navegación
+    function renderNavMenuWidget(widget) {
+      const settings = widget.settings || {};
+      
+      return `<div class="elementor-widget elementor-widget-nav-menu">
+        <nav style="display: flex; gap: 25px;">
+          <a href="#inicio" style="color: #FFFFFF; text-decoration: none;">Inicio</a>
+          <a href="#empresa" style="color: #FFFFFF; text-decoration: none;">La Empresa</a>
+          <a href="#cripto" style="color: #FFFFFF; text-decoration: none;">Compra Cripto</a>
+          <a href="#fondos" style="color: #FFFFFF; text-decoration: none;">Fondos</a>
+          <a href="#glosario" style="color: #FFFFFF; text-decoration: none;">Glosario</a>
+          <a href="#contacto" style="color: #FFFFFF; text-decoration: none;">Contacto</a>
+        </nav>
+      </div>`;
+    }
+
+    // Renderizar widget de icono
+    function renderIconWidget(widget) {
+      const settings = widget.settings || {};
+      const icon = settings.selected_icon?.value || '⭐';
+      
+      return `<div class="elementor-widget elementor-widget-icon">
+        <div style="font-size: 24px; text-align: center;">${icon}</div>
+      </div>`;
+    }
+
+    // Función para mostrar mensajes
+    function showMessage(message, type = 'info') {
+      const messagesDiv = document.getElementById('messages');
+      const messageClass = type === 'error' ? 'error-message' : 'success-message';
+      
+      messagesDiv.innerHTML = `<div class="${messageClass}">${message}</div>`;
+      
+      // Limpiar mensaje después de 5 segundos
+      setTimeout(() => {
+        messagesDiv.innerHTML = '';
+      }, 5000);
+    }
+
+    // Función para limpiar output
+    function clearOutput() {
+      document.getElementById('renderOutput').innerHTML = `
+        <div style="text-align: center; padding: 100px 20px; color: #727272;">
+          <h2>👆 Selecciona un template JSON para comenzar</h2>
+          <p>Usa los controles de arriba para cargar un template de Elementor</p>
+        </div>
+      `;
+      document.getElementById('templateInfo').innerHTML = `
+        <strong>Instrucciones:</strong><br>
+        1. Selecciona un archivo .json de template<br>
+        2. O usa "Cargar Homepage" para el template por defecto<br>
+        3. Modifica el JSON y recarga para ver cambios
+      `;
+      showMessage('Output limpiado', 'success');
+    }
+
+    // Auto-cargar homepage al cargar la página (opcional)
+    // document.addEventListener('DOMContentLoaded', function() {
+    //   loadDefaultTemplate();
+    // });
+  </script>
+</body>
+</html>

@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Opciones de Mercado - CriptoInvestment</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto', Arial, sans-serif;
+      background: #F1F1F1;
+      color: #727272;
+      line-height: 1.5;
+    }
+
+    /* Tipografía basada en el UI Kit */
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Rajdhani', Arial, sans-serif;
+      font-weight: 700;
+      color: #001726;
+      text-transform: capitalize;
+    }
+
+    h1 { font-size: 57px; line-height: 1.1; letter-spacing: -2px; }
+    h2 { font-size: 44px; line-height: 1.1; letter-spacing: -1px; }
+    h3 { font-size: 33px; line-height: 1.2; letter-spacing: -1px; }
+
+    /* Header */
+    .header {
+      background: rgba(0, 23, 38, 0.9);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 15px 0;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+
+    .header-content {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+    }
+
+    .logo {
+      font-family: 'Rajdhani', Arial, sans-serif;
+      font-size: 24px;
+      font-weight: 700;
+      color: #FFFFFF;
+      text-decoration: none;
+    }
+
+    .nav {
+      display: flex;
+      gap: 25px;
+      align-items: center;
+    }
+
+    .nav a, .dropdown {
+      color: #FFFFFF;
+      text-decoration: none;
+      font-family: 'Rajdhani', Arial, sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      text-transform: uppercase;
+      transition: color 0.3s ease;
+      position: relative;
+    }
+
+    .nav a:hover, .nav a.active, .dropdown:hover {
+      color: #00CCFF;
+    }
+
+    /* Dropdown */
+    .dropdown {
+      cursor: pointer;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: #001726;
+      min-width: 200px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+      border-radius: 5px;
+      z-index: 1001;
+      margin-top: 5px;
+      padding-top: 5px;
+    }
+
+    /* Crear un área invisible que conecte el botón con el dropdown */
+    .dropdown::before {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      height: 10px;
+      background: transparent;
+      z-index: 1000;
+    }
+
+    .dropdown-content a {
+      color: #FFFFFF;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      text-transform: none;
+      font-size: 14px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .dropdown-content a:last-child {
+      border-bottom: none;
+    }
+
+    .dropdown-content a:hover {
+      background: #0099FF;
+      color: #FFFFFF;
+    }
+
+    /* Mostrar dropdown al hacer hover sobre el contenedor padre o el contenido */
+    .dropdown:hover .dropdown-content {
+      display: block;
+      opacity: 1;
+    }
+
+    /* Mantener el dropdown visible cuando el mouse está sobre el contenido */
+    .dropdown-content:hover {
+      display: block;
+      opacity: 1;
+    }
+
+    /* Transición suave */
+    .dropdown-content {
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+
+    .dropdown:hover .dropdown-content,
+    .dropdown-content:hover {
+      opacity: 1;
+    }
+
+    .btn {
+      background: #00FF99;
+      color: #001726;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 5px;
+      font-family: 'Rajdhani', Arial, sans-serif;
+      font-size: 17px;
+      font-weight: 500;
+      text-transform: capitalize;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+      background: #9900FF;
+      color: #FFFFFF;
+    }
+
+    /* Hero Section */
+    .hero {
+      position: relative;
+      min-height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #FFFFFF;
+      padding: 100px 20px 50px;
+      background: linear-gradient(135deg, #001726 0%, #0099FF 100%);
+    }
+
+    .hero-content {
+      max-width: 800px;
+    }
+
+    .hero h1 {
+      font-size: 73px;
+      color: #FFFFFF;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 20px;
+      margin-bottom: 30px;
+      opacity: 0.9;
+    }
+
+    /* Secciones */
+    .section {
+      padding: 80px 20px;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
+    }
+
+    .card {
+      background: #FFFFFF;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card h3 {
+      margin-bottom: 15px;
+      color: #001726;
+    }
+
+    .card p {
+      color: #727272;
+      margin-bottom: 20px;
+    }
+
+    /* Footer */
+    .footer {
+      background: #001726;
+      color: #FFFFFF;
+      padding: 50px 20px 20px;
+      text-align: center;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 44px; }
+      .nav { display: none; }
+      .grid { grid-template-columns: 1fr; }
+    }
+
+    /* Animaciones */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-in {
+      animation: fadeInUp 0.8s ease-out;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="header-content">
+      <a href="inicio.html" class="logo">CriptoInvestment</a>
+      <nav class="nav">
+        <a href="inicio.html">Inicio</a>
+        <a href="la-empresa.html">La Empresa</a>
+        <a href="cripto.html">Compra Cripto</a>
+        <div class="dropdown active">
+          Opciones de Mercado
+          <div class="dropdown-content">
+            <a href="fondo-top3.html">Fondo Top 3 Market Cap</a>
+            <a href="fondo-top10.html">Fondo Top 10 Market Cap</a>
+            <a href="#estilos">Estilos de Inversión</a>
+            <a href="#categorias">Categorías Especiales</a>
+            <a href="#comparador">Comparador de fondos</a>
+          </div>
+        </div>
+        <a href="#glosario">Glosario</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+      <a href="#" class="btn">Get Started</a>
+    </div>
+  </header>
+
+  <!-- Contenido Principal -->
+  <main>
+    <!-- Hero Section -->
+    <section class="hero fade-in">
+      <div class="hero-content">
+        <h1>Opciones de Mercado</h1>
+        <p>Descubre nuestros fondos de inversión especializados en criptomonedas</p>
+      </div>
+    </section>
+
+    <!-- Qué son los Fondos de Inversión -->
+    <section class="section fade-in">
+      <div class="container">
+        <h2 style="text-align: center; margin-bottom: 30px;">¿Qué son los Fondos de Inversión en Cripto?</h2>
+        <div style="max-width: 900px; margin: 0 auto; text-align: center;">
+          <p style="font-size: 18px; line-height: 1.6; margin-bottom: 40px;">
+            Los fondos de inversión en criptomonedas son vehículos de inversión colectiva que permiten a los inversores 
+            acceder a una cartera diversificada de activos digitales sin necesidad de gestionar directamente las inversiones. 
+            Nuestros fondos están gestionados por profesionales especializados que toman decisiones estratégicas basadas 
+            en análisis técnico y fundamental del mercado cripto.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Ventajas de Invertir en Fondos -->
+    <section class="section fade-in" style="background: #F2F2F2;">
+      <div class="container">
+        <h2 style="text-align: center; margin-bottom: 50px;">Ventajas de Nuestros Fondos</h2>
+        <div class="grid">
+          <div class="card">
+            <h3 style="color: #0099FF;">🎯 Gestión Profesional</h3>
+            <p>Nuestro equipo de analistas especializados gestiona activamente las carteras, optimizando el rendimiento y minimizando riesgos.</p>
+          </div>
+          <div class="card">
+            <h3 style="color: #00FF99;">📊 Diversificación</h3>
+            <p>Accede a una amplia gama de criptomonedas y estrategias de inversión con una sola inversión.</p>
+          </div>
+          <div class="card">
+            <h3 style="color: #9900FF;">⏰ Ahorro de Tiempo</h3>
+            <p>No necesitas dedicar tiempo al análisis diario del mercado. Nosotros nos encargamos de todo.</p>
+          </div>
+          <div class="card">
+            <h3 style="color: #0099FF;">🔒 Seguridad</h3>
+            <p>Fondos custodiados en plataformas seguras con los más altos estándares de protección.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Estrategias por Market Cap -->
+    <section id="estrategias" class="section fade-in">
+      <div class="container">
+        <h2 style="text-align: center; margin-bottom: 50px;">Estrategias por Market Cap</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 40px; max-width: 1000px; margin: 0 auto;">
+          <div class="card" style="padding: 40px; text-align: center;">
+            <h3 style="color: #00FF99; font-size: 28px; margin-bottom: 20px;">🥇 Top 3 Market Cap</h3>
+            <p style="font-size: 18px; line-height: 1.6; margin-bottom: 25px;">
+              Fondo conservador que invierte en las <strong>3 criptomonedas de mayor capitalización</strong> del mercado. 
+              Estrategia de bajo riesgo enfocada en Bitcoin, Ethereum y la tercera crypto más capitalizada.
+            </p>
+            <div style="background: #F8F9FA; padding: 20px; border-radius: 10px; margin-bottom: 25px;">
+              <h4 style="color: #001726; margin-bottom: 15px;">Características:</h4>
+              <ul style="text-align: left; color: #727272; line-height: 1.8;">
+                <li>✅ Máxima estabilidad y liquidez</li>
+                <li>✅ Menor volatilidad</li>
+                <li>✅ Ideal para inversores conservadores</li>
+                <li>✅ Rebalanceo automático mensual</li>
+              </ul>
+            </div>
+            <a href="fondo-top3.html" class="btn" style="padding: 15px 30px; font-size: 18px;">Ver Fondo Top 3</a>
+          </div>
+          <div class="card" style="padding: 40px; text-align: center;">
+            <h3 style="color: #0099FF; font-size: 28px; margin-bottom: 20px;">🚀 Top 10 Market Cap</h3>
+            <p style="font-size: 18px; line-height: 1.6; margin-bottom: 25px;">
+              Fondo diversificado que invierte en las <strong>10 criptomonedas de mayor capitalización</strong> del mercado. 
+              Equilibrio perfecto entre estabilidad y potencial de crecimiento.
+            </p>
+            <div style="background: #F8F9FA; padding: 20px; border-radius: 10px; margin-bottom: 25px;">
+              <h4 style="color: #001726; margin-bottom: 15px;">Características:</h4>
+              <ul style="text-align: left; color: #727272; line-height: 1.8;">
+                <li>✅ Mayor diversificación</li>
+                <li>✅ Potencial de crecimiento superior</li>
+                <li>✅ Riesgo moderado</li>
+                <li>✅ Rebalanceo automático quincenal</li>
+              </ul>
+            </div>
+            <a href="fondo-top10.html" class="btn" style="padding: 15px 30px; font-size: 18px;">Ver Fondo Top 10</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Estilos de Inversión -->
+    <section id="estilos" class="section fade-in" style="background: #FFFFFF;">
+      <div class="container">
+        <h2 style="text-align: center; margin-bottom: 50px;">Estilos de Inversión</h2>
+        <div class="grid">
+          <div class="card">
+            <h3 style="color: #0099FF;">📈 Crecimiento</h3>
+            <p>Fondos que buscan maximizar el crecimiento del capital invirtiendo en proyectos con alto potencial de apreciación.</p>
+            <a href="#" class="btn">Explorar</a>
+          </div>
+          <div class="card">
+            <h3 style="color: #00FF99;">⚖️ Balanceado</h3>
+            <p>Estrategia equilibrada entre crecimiento y estabilidad, ideal para inversores con perfil de riesgo moderado.</p>
+            <a href="#" class="btn">Explorar</a>
+          </div>
+          <div class="card">
+            <h3 style="color: #9900FF;">🛡️ Conservador</h3>
+            <p>Enfoque en la preservación del capital con exposición controlada a las principales criptomonedas.</p>
+            <a href="#" class="btn">Explorar</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Categorías Especiales -->
+    <section id="categorias" class="section fade-in">
+      <div class="container">
+        <h2 style="text-align: center; margin-bottom: 50px;">Categorías Especiales</h2>
+        <div class="grid">
+          <div class="card">
+            <h3 style="color: #00FF99;">🔗 DeFi</h3>
+            <p>Fondos especializados en protocolos de finanzas descentralizadas y tokens de gobernanza.</p>
+            <a href="#" class="btn">Ver Detalles</a>
+          </div>
+          <div class="card">
+            <h3 style="color: #9900FF;">🎮 Gaming & NFTs</h3>
+            <p>Inversiones en el ecosistema de juegos blockchain y tokens no fungibles.</p>
+            <a href="#" class="btn">Ver Detalles</a>
+          </div>
+          <div class="card">
+            <h3 style="color: #0099FF;">🌐 Web3</h3>
+            <p>Fondos enfocados en la infraestructura y aplicaciones de la próxima generación de internet.</p>
+            <a href="#" class="btn">Ver Detalles</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Comparador de Fondos -->
+    <section id="comparador" class="section fade-in" style="background: #001726; color: white; text-align: center;">
+      <div class="container">
+        <h2 style="color: white; margin-bottom: 30px;">Comparador de Fondos</h2>
+        <p style="font-size: 18px; margin-bottom: 40px; opacity: 0.9;">
+          Utiliza nuestra herramienta de comparación para encontrar el fondo que mejor se adapte a tu perfil de inversor.
+        </p>
+        <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+          <a href="#" class="btn">Comparar Fondos</a>
+          <a href="https://pro.criptoinvestments.com/es/home" class="btn" style="background: transparent; border: 2px solid #00FF99; color: #00FF99;" target="_blank">Ver Todos los Fondos</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2025 CriptoInvestment. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Cargar animaciones
+    document.addEventListener('DOMContentLoaded', function() {
+      const elements = document.querySelectorAll('.fade-in');
+      elements.forEach(el => {
+        el.style.animation = 'fadeInUp 0.8s ease-out';
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>La Empresa - CriptoInvestment</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto', Arial, sans-serif;
+      background: #F1F1F1;
+      color: #727272;
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+
+    /* Tipografía basada en el UI Kit */
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Rajdhani', Arial, sans-serif;
+      font-weight: 700;
+      color: #001726;
+      text-transform: capitalize;
+    }
+
+    h1 { font-size: 57px; line-height: 1.1; letter-spacing: -2px; }
+    h2 { font-size: 44px; line-height: 1.1; letter-spacing: -1px; }
+    h3 { font-size: 33px; line-height: 1.2; letter-spacing: -1px; }
+    h4 { font-size: 28px; line-height: 1.2; }
+    h5 { font-size: 21px; line-height: 1.2; }
+    h6 { font-size: 18px; line-height: 1.2; letter-spacing: 2px; text-transform: uppercase; color: #0099FF; }
+
+    /* Colores del UI Kit */
+    .primary { color: #0099FF; }
+    .secondary { color: #001726; }
+    .accent { color: #00FF99; }
+    .accent2 { color: #9900FF; }
+    .text { color: #727272; }
+
+    /* Header */
+    .header {
+      background: rgba(0, 23, 38, 0.9);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 15px 0;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+
+    .header-content {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+    }
+
+    .logo {
+      font-family: 'Rajdhani', Arial, sans-serif;
+      font-size: 24px;
+      font-weight: 700;
+      color: #FFFFFF;
+      text-decoration: none;
+    }
+
+    .nav {
+      display: flex;
+      gap: 25px;
+    }
+
+    .nav a {
+      color: #FFFFFF;
+      text-decoration: none;
+      font-family: 'Rajdhani', Arial, sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0px;
+      transition: color 0.3s ease;
+    }
+
+    .nav a:hover, .nav a.active {
+      color: #00CCFF;
+    }
+
+    .btn {
+      background: #00FF99;
+      color: #001726;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 5px;
+      font-family: 'Rajdhani', Arial, sans-serif;
+      font-size: 17px;
+      font-weight: 500;
+      text-transform: capitalize;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .btn:hover {
+      background: #9900FF;
+      color: #FFFFFF;
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Hero Section */
+    .hero {
+      position: relative;
+      min-height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #FFFFFF;
+      padding: 100px 20px 50px;
+      overflow: hidden;
+      background: linear-gradient(135deg, #001726 0%, #0099FF 100%);
+    }
+
+    .hero-content {
+      max-width: 800px;
+    }
+
+    .hero h1 {
+      font-size: 73px;
+      color: #FFFFFF;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .hero p {
+      font-size: 20px;
+      margin-bottom: 30px;
+      opacity: 0.9;
+    }
+
+    /* Secciones */
+    .section {
+      padding: 80px 20px;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
+    }
+
+    .card {
+      background: #FFFFFF;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card h3 {
+      margin-bottom: 15px;
+      color: #001726;
+    }
+
+    .card p {
+      color: #727272;
+      margin-bottom: 20px;
+    }
+
+    /* Sección destacada */
+    .highlight-box {
+      background: #0099FF;
+      color: white;
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 153, 255, 0.2);
+      text-align: center;
+    }
+
+    .highlight-box h3 {
+      color: white;
+      margin-bottom: 20px;
+      font-size: 48px;
+    }
+
+    .highlight-box p {
+      color: white;
+      font-size: 18px;
+    }
+
+    /* Footer */
+    .footer {
+      background: #001726;
+      color: #FFFFFF;
+      padding: 50px 20px 20px;
+      text-align: center;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: #FFFFFF;
+      text-decoration: none;
+      font-size: 14px;
+      opacity: 0.8;
+      transition: opacity 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      opacity: 1;
+      color: #00FF99;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 44px; }
+      .hero p { font-size: 16px; }
+      h1 { font-size: 36px; }
+      h2 { font-size: 30px; }
+      h3 { font-size: 24px; }
+      .nav { display: none; }
+      .header-content { justify-content: space-between; }
+      .grid { grid-template-columns: 1fr; }
+      
+      .hero {
+        padding: 80px 15px 30px;
+      }
+    }
+
+    /* Animaciones */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-in {
+      animation: fadeInUp 0.8s ease-out;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="header-content">
+      <a href="inicio.html" class="logo">CriptoInvestment</a>
+      <nav class="nav">
+        <a href="inicio.html">Inicio</a>
+        <a href="la-empresa.html" class="active">La Empresa</a>
+        <a href="cripto.html">Compra Cripto</a>
+        <a href="opciones-mercado.html">Opciones de Mercado</a>
+        <a href="#glosario">Glosario</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+      <a href="#" class="btn">Get Started</a>
+    </div>
+  </header>
+
+  <!-- Contenido Principal -->
+  <main>
+    <!-- Hero Section -->
+    <section class="hero fade-in">
+      <div class="hero-content">
+        <h1>La Empresa</h1>
+        <p>Conoce nuestra historia, misión y compromiso con los inversores</p>
+      </div>
+    </section>
+    
+    <!-- Quiénes Somos -->
+    <section class="section fade-in">
+      <div class="container">
+        <h2 style="text-align: center; margin-bottom: 30px;">Quiénes Somos</h2>
+        <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+          <p style="font-size: 18px; line-height: 1.6; margin-bottom: 40px;">
+            Criptoinvestments nace con el objetivo de acercar el mundo de las criptomonedas a los pequeños inversores. 
+            Creemos que las nuevas tecnologías financieras ofrecen oportunidades únicas, pero también grandes desafíos y riesgos. 
+            Nuestro compromiso es brindar un espacio seguro, confiable y profesional para que cada persona pueda formar parte de este mercado en crecimiento.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Nuestra Historia -->
+    <section class="fade-in" style="background: #F2F2F2; padding: 80px 20px; width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw;">
+      <div style="max-width: 1280px; margin: 0 auto; padding: 0 20px;">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;">
+          <div>
+            <h2 style="margin-bottom: 25px;">Nuestra Historia</h2>
+            <p style="margin-bottom: 20px; line-height: 1.6;">
+              Desde nuestros inicios, nos propusimos acompañar a quienes buscan invertir en criptomonedas, 
+              pero no cuentan con el conocimiento o la experiencia suficiente para hacerlo solos.
+            </p>
+            <p style="margin-bottom: 20px; line-height: 1.6;">
+              Con un equipo de especialistas, fuimos construyendo una propuesta que combina asesoramiento personalizado, 
+              herramientas seguras y estrategias adaptadas a cada perfil de inversor.
+            </p>
+            <p style="line-height: 1.6;">
+              A lo largo del tiempo, consolidamos vínculos estratégicos con plataformas reconocidas que nos permiten 
+              ofrecer a nuestros clientes operaciones transparentes y eficientes, siempre priorizando la seguridad y la confianza.
+            </p>
+          </div>
+          <div style="text-align: center;">
+            <div class="highlight-box">
+              <h3>2020</h3>
+              <p>Año de fundación</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Nuestra Misión -->
+    <section class="section fade-in">
+      <div class="container">
+        <h2 style="text-align: center; margin-bottom: 40px;">Nuestra Misión</h2>
+        <div style="max-width: 900px; margin: 0 auto;">
+          <div class="card" style="text-align: center; padding: 50px;">
+            <h3 style="color: #0099FF; margin-bottom: 25px;">🎯 Compromiso con el Inversor</h3>
+            <p style="font-size: 18px; line-height: 1.6; margin-bottom: 0;">
+              Criptoinvestments busca ayudar a los pequeños inversores a participar en el mercado de criptomonedas 
+              contando con asesoramiento profesional en todas sus operaciones. La idea general de la empresa es ayudar 
+              a los inversores a obtener los mejores resultados en sus inversiones asumiendo el menor riesgo posible 
+              y evitando caer en estafas.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Habilitación PSAV -->
+    <section class="fade-in" style="background: linear-gradient(135deg, #00FF99 0%, #0099FF 100%); color: white; padding: 80px 20px; width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw;">
+      <div style="max-width: 1280px; margin: 0 auto; padding: 0 20px;">
+        <div style="text-align: center;">
+          <h6 style="color: white; margin-bottom: 20px; opacity: 0.9;">🏛️ REGULACIÓN Y CUMPLIMIENTO</h6>
+          <h2 style="color: white; margin-bottom: 30px; font-size: 48px;">Habilitados como PSAV</h2>
+          <div style="background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); padding: 40px; border-radius: 15px; border: 1px solid rgba(255, 255, 255, 0.2);">
+            <h3 style="color: white; margin-bottom: 25px; font-size: 36px;">✅ Proveedor de Servicios de Activos Virtuales</h3>
+            <div style="max-width: 900px; margin: 0 auto;">
+              <p style="font-size: 18px; line-height: 1.6; margin-bottom: 25px; opacity: 0.95;">
+                CriptoInvestment cuenta con la <strong>habilitación oficial como PSAV</strong> (Proveedor de Servicios de Activos Virtuales) 
+                otorgada por la Comisión Nacional de Valores (CNV) de Argentina, lo que nos posiciona como una empresa 
+                regulada y supervisada por las autoridades competentes.
+              </p>
+              <p style="font-size: 18px; line-height: 1.6; margin-bottom: 30px; opacity: 0.95;">
+                Esta habilitación garantiza que operamos bajo los más altos estándares de <strong>transparencia, seguridad y cumplimiento normativo</strong>, 
+                brindando a nuestros clientes la tranquilidad de invertir con una empresa legalmente constituida y supervisada.
+              </p>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 40px;">
+              <div style="text-align: center;">
+                <div style="background: rgba(255, 255, 255, 0.15); padding: 20px; border-radius: 10px; margin-bottom: 15px;">
+                  <h4 style="color: white; margin-bottom: 10px;">🔒 Seguridad</h4>
+                  <p style="font-size: 14px; opacity: 0.9;">Protocolos de seguridad certificados</p>
+                </div>
+              </div>
+              <div style="text-align: center;">
+                <div style="background: rgba(255, 255, 255, 0.15); padding: 20px; border-radius: 10px; margin-bottom: 15px;">
+                  <h4 style="color: white; margin-bottom: 10px;">📋 Transparencia</h4>
+                  <p style="font-size: 14px; opacity: 0.9;">Reportes regulares a la CNV</p>
+                </div>
+              </div>
+              <div style="text-align: center;">
+                <div style="background: rgba(255, 255, 255, 0.15); padding: 20px; border-radius: 10px; margin-bottom: 15px;">
+                  <h4 style="color: white; margin-bottom: 10px;">⚖️ Cumplimiento</h4>
+                  <p style="font-size: 14px; opacity: 0.9;">Marco regulatorio actualizado</p>
+                </div>
+              </div>
+            </div>
+            <div style="margin-top: 30px;">
+              <a href="https://criptoinvestments.com/contacto-2/" class="btn" style="background: white; color: #0099FF; font-weight: 600;" target="_blank">
+                Conocer más sobre nuestra habilitación
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Nuestros Servicios -->
+    <section class="fade-in" style="background: #F2F2F2; padding: 80px 20px; width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw;">
+      <div style="max-width: 1280px; margin: 0 auto; padding: 0 20px;">
+        <h2 style="text-align: center; margin-bottom: 50px;">Nuestros Servicios</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 50px;">
+          <div class="card">
+            <h3 style="color: #00FF99;">💰 Compra / Venta de Criptomonedas</h3>
+            <p style="margin-bottom: 20px;">
+              A través de nuestro convenio con SatoshiTango nuestros clientes pueden comprar y vender las principales 
+              criptomonedas del mercado contando con asesoramiento profesional en todo el proceso.
+            </p>
+            <a href="https://criptoinvestments.com/contacto-2/" class="btn" target="_blank">Más Información</a>
+          </div>
+          <div class="card">
+            <h3 style="color: #9900FF;">📈 Fondos de Inversión</h3>
+            <p style="margin-bottom: 20px;">
+              Ofrecemos una variedad de fondos administrados con distintos objetivos y lineamientos para que los clientes 
+              interesados en invertir en cripto pero que no tienen el conocimiento o tiempo suficiente para administrar 
+              sus inversiones puedan acceder a carteras gestionadas por un equipo de profesionales.
+            </p>
+            <a href="https://pro.criptoinvestments.com/es/home" class="btn" target="_blank">Ver Fondos</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="fade-in" style="background: #001726; color: white; text-align: center; padding: 80px 20px; width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw;">
+      <div style="max-width: 1280px; margin: 0 auto; padding: 0 20px;">
+        <h2 style="color: white; margin-bottom: 30px;">¿Listo para Comenzar?</h2>
+        <p style="font-size: 18px; margin-bottom: 40px; opacity: 0.9;">
+          Únete a miles de inversores que ya confían en nosotros para hacer crecer su patrimonio en criptomonedas.
+        </p>
+        <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+          <a href="https://pro.criptoinvestments.com/es/home" class="btn" target="_blank">Comenzar a Invertir</a>
+          <a href="https://criptoinvestments.com/contacto-2/" class="btn" style="background: transparent; border: 2px solid #00FF99; color: #00FF99;" target="_blank">Contactar Asesor</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-links">
+        <a href="#">Términos de Servicio</a>
+        <a href="#">Política de Privacidad</a>
+        <a href="#">Soporte</a>
+        <a href="#">API</a>
+        <a href="#">Blog</a>
+      </div>
+      <p>&copy; 2025 CriptoInvestment. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Cargar animaciones al hacer scroll
+    document.addEventListener('DOMContentLoaded', function() {
+      const elements = document.querySelectorAll('.fade-in');
+      elements.forEach(el => {
+        el.style.animation = 'fadeInUp 0.8s ease-out';
+      });
+    });
+  </script>
+</body>
+</html>
