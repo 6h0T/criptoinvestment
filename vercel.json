@@ -1,43 +1,35 @@
 {
-  "version": 2,
-  "builds": [
+  "rewrites": [
     {
-      "src": "**/*.html",
-      "use": "@vercel/static"
+      "source": "/inicio",
+      "destination": "/inicio.html"
+    },
+    {
+      "source": "/la-empresa",
+      "destination": "/la-empresa.html"
+    },
+    {
+      "source": "/cripto",
+      "destination": "/cripto.html"
+    },
+    {
+      "source": "/opciones-mercado",
+      "destination": "/opciones-mercado.html"
+    },
+    {
+      "source": "/fondo-top3",
+      "destination": "/fondo-top3.html"
+    },
+    {
+      "source": "/fondo-top10",
+      "destination": "/fondo-top10.html"
     }
   ],
-  "routes": [
+  "redirects": [
     {
-      "src": "/",
-      "dest": "/inicio.html"
-    },
-    {
-      "src": "/inicio",
-      "dest": "/inicio.html"
-    },
-    {
-      "src": "/la-empresa",
-      "dest": "/la-empresa.html"
-    },
-    {
-      "src": "/cripto",
-      "dest": "/cripto.html"
-    },
-    {
-      "src": "/opciones-mercado",
-      "dest": "/opciones-mercado.html"
-    },
-    {
-      "src": "/fondo-top3",
-      "dest": "/fondo-top3.html"
-    },
-    {
-      "src": "/fondo-top10",
-      "dest": "/fondo-top10.html"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/$1"
+      "source": "/",
+      "destination": "/inicio.html",
+      "permanent": false
     }
   ],
   "headers": [
@@ -58,5 +50,7 @@
         }
       ]
     }
-  ]
+  ],
+  "cleanUrls": true,
+  "trailingSlash": false
 }
