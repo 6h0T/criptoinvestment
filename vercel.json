@@ -23,6 +23,10 @@
     {
       "source": "/fondo-top10",
       "destination": "/fondo-top10.html"
+    },
+    {
+      "source": "/estilos-inversion",
+      "destination": "/estilos-inversion.html"
     }
   ],
   "redirects": [

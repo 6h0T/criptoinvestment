@@ -1,0 +1,1466 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Estilos de Inversión - CriptoInvestment</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto', Arial, sans-serif;
+      background: #F1F1F1;
+      color: #727272;
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+
+    /* Tipografía basada en el UI Kit */
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Rajdhani', Arial, sans-serif;
+      font-weight: 700;
+      color: #001726;
+      text-transform: capitalize;
+    }
+
+    h1 { font-size: 57px; line-height: 1.1; letter-spacing: -2px; }
+    h2 { font-size: 44px; line-height: 1.1; letter-spacing: -1px; }
+    h3 { font-size: 33px; line-height: 1.2; letter-spacing: -1px; }
+
+    /* Header */
+    .header {
+      background: rgba(0, 23, 38, 0.9);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 15px 0;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+
+    .header-content {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+    }
+
+    .logo {
+      font-family: 'Rajdhani', Arial, sans-serif;
+      font-size: 24px;
+      font-weight: 700;
+      color: #FFFFFF;
+      text-decoration: none;
+    }
+
+    .nav {
+      display: flex;
+      gap: 25px;
+      align-items: center;
+    }
+
+    .nav a, .dropdown {
+      color: #FFFFFF;
+      text-decoration: none;
+      font-family: 'Rajdhani', Arial, sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      text-transform: uppercase;
+      transition: color 0.3s ease;
+      position: relative;
+    }
+
+    .nav a:hover, .nav a.active, .dropdown:hover {
+      color: #00CCFF;
+    }
+
+    /* Dropdown */
+    .dropdown {
+      cursor: pointer;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: #001726;
+      min-width: 200px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+      border-radius: 5px;
+      z-index: 1001;
+      margin-top: 5px;
+      padding-top: 5px;
+    }
+
+    .dropdown-content a {
+      color: #FFFFFF;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      text-transform: none;
+      font-size: 14px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .dropdown-content a:hover {
+      background: #0099FF;
+      color: #FFFFFF;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+      opacity: 1;
+    }
+
+    .btn {
+      background: #00FF99;
+      color: #001726;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 5px;
+      font-family: 'Rajdhani', Arial, sans-serif;
+      font-size: 17px;
+      font-weight: 500;
+      text-transform: capitalize;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+      background: #9900FF;
+      color: #FFFFFF;
+    }
+
+    /* Hero Section */
+    .hero {
+      position: relative;
+      min-height: 70vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #FFFFFF;
+      padding: 100px 20px 50px;
+      overflow: hidden;
+      background: linear-gradient(135deg, #001726 0%, #0099FF 50%, #9900FF 100%);
+    }
+
+    .hero-content {
+      max-width: 900px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero h1 {
+      font-size: 73px;
+      color: #FFFFFF;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .hero p {
+      font-size: 20px;
+      margin-bottom: 30px;
+      opacity: 0.9;
+      line-height: 1.6;
+    }
+
+    /* Secciones */
+    .section {
+      padding: 80px 20px;
+      width: 100vw;
+      position: relative;
+      left: 50%;
+      right: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .card {
+      background: #FFFFFF;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    /* Footer */
+    .footer {
+      background: #001726;
+      color: #FFFFFF;
+      padding: 50px 20px 20px;
+      text-align: center;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 44px; }
+      .nav { display: none; }
+    }
+
+    /* Animaciones */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-in {
+      animation: fadeInUp 0.8s ease-out;
+    }
+
+    /* Estilos específicos para carteras */
+    .portfolio-section {
+      margin-bottom: 80px;
+    }
+
+    .portfolio-header {
+      text-align: center;
+      margin-bottom: 60px;
+      padding: 40px;
+      border-radius: 20px;
+      color: white;
+    }
+
+    .conservador {
+      background: linear-gradient(135deg, #00FF99 0%, #0099FF 100%);
+    }
+
+    .moderado {
+      background: linear-gradient(135deg, #0099FF 0%, #9900FF 100%);
+    }
+
+    .arriesgado {
+      background: linear-gradient(135deg, #9900FF 0%, #FF0066 100%);
+    }
+
+    .performance-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .performance-card {
+      background: white;
+      padding: 25px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .performance-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .performance-value {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .performance-value.conservador { color: #00FF99; }
+    .performance-value.moderado { color: #0099FF; }
+    .performance-value.arriesgado { color: #9900FF; }
+
+    .performance-label {
+      color: #727272;
+      font-size: 14px;
+    }
+
+    /* Estilos específicos para métricas en filas */
+    .performance-metrics-row {
+      margin-bottom: 40px;
+    }
+
+    .performance-metrics-row .performance-card {
+      background: white;
+      padding: 25px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .performance-metrics-row .performance-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+
+    .performance-metrics-row .performance-value {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .performance-metrics-row .performance-label {
+      color: #727272;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    /* Composición */
+    .composition-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+      margin-top: 40px;
+    }
+
+    .crypto-item {
+      background: white;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .crypto-item:hover {
+      transform: translateY(-5px);
+    }
+
+    .crypto-item img {
+      width: 40px;
+      height: 40px;
+      margin-bottom: 15px;
+    }
+
+    .crypto-item h5 {
+      margin-bottom: 8px;
+      color: #001726;
+      font-size: 16px;
+    }
+
+    .crypto-item .percentage {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .crypto-item .symbol {
+      font-size: 12px;
+      color: #727272;
+      font-weight: 600;
+    }
+
+    /* Estilos para gráficos */
+    .chart-container {
+      position: relative;
+      height: 250px;
+      margin-bottom: 20px;
+    }
+
+    .chart-card {
+      background: white;
+      border-radius: 15px;
+      padding: 25px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: 1px solid rgba(0, 255, 153, 0.1);
+    }
+
+    .chart-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+      border-color: rgba(0, 255, 153, 0.3);
+    }
+
+    .chart-title {
+      color: #00FF99;
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    /* Responsive para carteras */
+    @media (max-width: 768px) {
+      .composition-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .performance-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .performance-metrics-row {
+        grid-template-columns: repeat(2, 1fr) !important;
+      }
+
+      .chart-container {
+        height: 200px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .composition-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .performance-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .performance-metrics-row {
+        grid-template-columns: 1fr !important;
+      }
+
+      .chart-container {
+        height: 180px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="header-content">
+      <a href="inicio.html" class="logo">CriptoInvestment</a>
+      <nav class="nav">
+        <a href="inicio.html">Inicio</a>
+        <a href="la-empresa.html">La Empresa</a>
+        <a href="cripto.html">Compra Cripto</a>
+        <div class="dropdown active">
+          Opciones de Mercado
+          <div class="dropdown-content">
+            <a href="fondo-top3.html">Fondo Top 3 Market Cap</a>
+            <a href="fondo-top10.html">Fondo Top 10 Market Cap</a>
+            <a href="estilos-inversion.html">Estilos de Inversión</a>
+            <a href="opciones-mercado.html#categorias">Categorías Especiales</a>
+            <a href="opciones-mercado.html#comparador">Comparador de fondos</a>
+          </div>
+        </div>
+        <a href="#glosario">Glosario</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+      <a href="#" class="btn">Get Started</a>
+    </div>
+  </header>
+
+  <!-- Contenido Principal -->
+  <main>
+    <!-- Hero Section -->
+    <section class="hero fade-in">
+      <div class="hero-content">
+        <h1>Estilos de Inversión</h1>
+        <p>
+          Descubre nuestras carteras especializadas diseñadas para diferentes perfiles de riesgo. 
+          Cada estilo de inversión está cuidadosamente estructurado para maximizar el rendimiento 
+          según tu tolerancia al riesgo y objetivos financieros.
+        </p>
+      </div>
+    </section>
+
+    <!-- Introducción -->
+    <section class="section fade-in" style="background: #FFFFFF;">
+      <div class="container">
+        <div style="text-align: center; margin-bottom: 60px;">
+          <h2 style="margin-bottom: 30px;">¿Qué son los Estilos de Inversión?</h2>
+          <p style="font-size: 18px; max-width: 800px; margin: 0 auto; line-height: 1.6;">
+            Los estilos de inversión representan diferentes enfoques estratégicos para invertir en criptomonedas, 
+            cada uno diseñado para satisfacer distintos perfiles de riesgo y objetivos de rendimiento. 
+            Nuestras carteras están profesionalmente gestionadas y optimizadas para cada perfil específico.
+          </p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+          <div class="card">
+            <h3 style="color: #00FF99; margin-bottom: 20px;">🛡️ Perfil Conservador</h3>
+            <p>Ideal para inversores que priorizan la preservación del capital y buscan exposición controlada al mercado cripto con menor volatilidad.</p>
+          </div>
+          <div class="card">
+            <h3 style="color: #0099FF; margin-bottom: 20px;">⚖️ Perfil Moderado</h3>
+            <p>Perfecto para inversores que buscan un equilibrio entre crecimiento y estabilidad, con una diversificación balanceada de activos.</p>
+          </div>
+          <div class="card">
+            <h3 style="color: #9900FF; margin-bottom: 20px;">🚀 Perfil Arriesgado</h3>
+            <p>Diseñado para inversores experimentados que buscan maximizar el potencial de crecimiento y están dispuestos a asumir mayor volatilidad.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Cartera Conservadora -->
+    <section class="section portfolio-section fade-in" style="background: #F8F9FA;">
+      <div class="container">
+        <div class="portfolio-header conservador">
+          <h2 style="color: white; margin-bottom: 20px;">🛡️ Cartera Conservadora</h2>
+          <p style="font-size: 18px; opacity: 0.9; max-width: 600px; margin: 0 auto;">
+            Estrategia enfocada en la estabilidad y preservación del capital, con exposición controlada 
+            a las criptomonedas más establecidas del mercado.
+          </p>
+        </div>
+
+        <!-- Charts Conservadora -->
+        <div style="text-align: center; margin-bottom: 60px;">
+          <h3 style="margin-bottom: 30px;">Análisis de Performance</h3>
+        </div>
+
+        <!-- Gráficos de Análisis -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; margin-bottom: 60px;">
+          <!-- Evolución Histórica -->
+          <div class="chart-card">
+            <div class="chart-title">📈 Evolución Histórica</div>
+            <div class="chart-container">
+              <canvas id="historicalChart"></canvas>
+            </div>
+          </div>
+          
+          <!-- Evolución Último Mes -->
+          <div class="chart-card">
+            <div class="chart-title">📊 Último Mes</div>
+            <div class="chart-container">
+              <canvas id="monthlyChart"></canvas>
+            </div>
+          </div>
+          
+          <!-- Composición del Fondo -->
+          <div class="chart-card">
+            <div class="chart-title">🥧 Composición</div>
+            <div class="chart-container">
+              <canvas id="compositionChart"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <!-- Métricas Conservadora -->
+        <div style="text-align: center; margin-bottom: 60px;">
+          <h3 style="margin-bottom: 30px;">Rendimiento y Métricas</h3>
+          <p style="font-size: 18px; max-width: 700px; margin: 0 auto; line-height: 1.6; color: #727272;">
+            Métricas clave del fondo conservador basadas en el rendimiento histórico de los activos componentes.
+          </p>
+        </div>
+
+        <!-- Primera fila de métricas -->
+        <div class="performance-metrics-row" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto 40px auto;">
+          <div class="performance-card">
+            <div class="performance-value" style="color: #00FF99;">62.83%</div>
+            <div class="performance-label">TIR (Tasa Interna de Retorno)</div>
+          </div>
+          <div class="performance-card">
+            <div class="performance-value" style="color: #00FF99;">170</div>
+            <div class="performance-label">Días Positivos</div>
+          </div>
+          <div class="performance-card">
+            <div class="performance-value" style="color: #00FF99;">156</div>
+            <div class="performance-label">Días Negativos</div>
+          </div>
+          <div class="performance-card">
+            <div class="performance-value" style="color: #00FF99;">21.98%</div>
+            <div class="performance-label">Mejor Rendimiento Diario</div>
+          </div>
+        </div>
+
+        <!-- Segunda fila de métricas -->
+        <div class="performance-metrics-row" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto;">
+          <div class="performance-card">
+            <div class="performance-value" style="color: #00FF99;">-10.49%</div>
+            <div class="performance-label">Peor Rendimiento Diario</div>
+          </div>
+          <div class="performance-card">
+            <div class="performance-value" style="color: #00FF99;">0.22%</div>
+            <div class="performance-label">Rendimiento Promedio Diario</div>
+          </div>
+          <div class="performance-card">
+            <div class="performance-value" style="color: #00FF99;">41.89%</div>
+            <div class="performance-label">Rendimiento desde Inicio</div>
+          </div>
+          <div class="performance-card">
+            <div class="performance-value" style="color: #00FF99;">$5.00</div>
+            <div class="performance-label">Inversión Mínima</div>
+          </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 40px;">
+          <a href="https://pro.criptoinvestments.com/es/home" class="btn" style="padding: 15px 30px; font-size: 18px;" target="_blank">Invertir en Cartera Conservadora</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Cartera Moderada -->
+    <section class="section portfolio-section fade-in" style="background: #FFFFFF;">
+      <div class="container">
+        <div class="portfolio-header moderado">
+          <h2 style="color: white; margin-bottom: 20px;">⚖️ Cartera Moderada</h2>
+          <p style="font-size: 18px; opacity: 0.9; max-width: 600px; margin: 0 auto;">
+            Equilibrio perfecto entre estabilidad y crecimiento, diversificando en las principales 
+            criptomonedas del mercado con gestión activa del riesgo.
+          </p>
+        </div>
+
+        <!-- Charts Moderada -->
+        <div style="text-align: center; margin-bottom: 60px;">
+          <h3 style="margin-bottom: 30px;">Análisis de Performance</h3>
+        </div>
+
+        <!-- Gráficos de Análisis Moderada -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; margin-bottom: 60px;">
+          <!-- Evolución Histórica Moderada -->
+          <div class="chart-card">
+            <div class="chart-title">📈 Evolución Histórica</div>
+            <div class="chart-container">
+              <canvas id="historicalChartModerado"></canvas>
+            </div>
+          </div>
+          
+          <!-- Evolución Último Mes Moderada -->
+          <div class="chart-card">
+            <div class="chart-title">📊 Último Mes</div>
+            <div class="chart-container">
+              <canvas id="monthlyChartModerado"></canvas>
+            </div>
+          </div>
+          
+          <!-- Composición del Fondo Moderada -->
+          <div class="chart-card">
+            <div class="chart-title">🥧 Composición</div>
+            <div class="chart-container">
+              <canvas id="compositionChartModerado"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <!-- Métricas Moderada -->
+        <div style="text-align: center; margin-bottom: 60px;">
+          <h3 style="margin-bottom: 30px;">Rendimiento y Métricas</h3>
+          <p style="font-size: 18px; max-width: 700px; margin: 0 auto; line-height: 1.6; color: #727272;">
+            Métricas clave del fondo moderado basadas en el rendimiento histórico de los activos componentes.
+          </p>
+        </div>
+
+        <!-- Primera fila de métricas Moderada -->
+        <div class="performance-metrics-row" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto 40px auto;">
+          <div class="performance-card">
+            <div class="performance-value" style="color: #0099FF;">84.72%</div>
+            <div class="performance-label">TIR (Tasa Interna de Retorno)</div>
+          </div>
+          <div class="performance-card">
+            <div class="performance-value" style="color: #0099FF;">186</div>
+            <div class="performance-label">Días Positivos</div>
+          </div>
+          <div class="performance-card">
+            <div class="performance-value" style="color: #0099FF;">151</div>
+            <div class="performance-label">Días Negativos</div>
+          </div>
+          <div class="performance-card">
+            <div class="performance-value" style="color: #0099FF;">9.61%</div>
+            <div class="performance-label">Mejor Rendimiento Diario</div>
+          </div>
+        </div>
+
+        <!-- Segunda fila de métricas Moderada -->
+        <div class="performance-metrics-row" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto;">
+          <div class="performance-card">
+            <div class="performance-value" style="color: #0099FF;">-11.24%</div>
+            <div class="performance-label">Peor Rendimiento Diario</div>
+          </div>
+          <div class="performance-card">
+            <div class="performance-value" style="color: #0099FF;">0.18%</div>
+            <div class="performance-label">Rendimiento Promedio Diario</div>
+          </div>
+          <div class="performance-card">
+            <div class="performance-value" style="color: #0099FF;">56.48%</div>
+            <div class="performance-label">Rendimiento desde Inicio</div>
+          </div>
+          <div class="performance-card">
+            <div class="performance-value" style="color: #0099FF;">$5.00</div>
+            <div class="performance-label">Inversión Mínima</div>
+          </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 40px;">
+          <a href="https://pro.criptoinvestments.com/es/home" class="btn" style="padding: 15px 30px; font-size: 18px;" target="_blank">Invertir en Cartera Moderada</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Cartera Arriesgada -->
+    <section class="section portfolio-section fade-in" style="background: #F8F9FA;">
+      <div class="container">
+        <div class="portfolio-header arriesgado">
+          <h2 style="color: white; margin-bottom: 20px;">🚀 Cartera Arriesgada</h2>
+          <p style="font-size: 18px; opacity: 0.9; max-width: 600px; margin: 0 auto;">
+            Estrategia agresiva diseñada para maximizar el potencial de crecimiento, 
+            invirtiendo en proyectos emergentes y tokens con alto potencial de revalorización.
+          </p>
+        </div>
+
+        <!-- Charts Arriesgada -->
+        <div style="text-align: center; margin-bottom: 60px;">
+          <h3 style="margin-bottom: 30px;">Análisis de Performance</h3>
+        </div>
+
+        <!-- Gráficos de Análisis Arriesgada -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; margin-bottom: 60px;">
+          <!-- Evolución Histórica Arriesgada -->
+          <div class="chart-card">
+            <div class="chart-title">📈 Evolución Histórica</div>
+            <div class="chart-container">
+              <canvas id="historicalChartArriesgado"></canvas>
+            </div>
+          </div>
+          
+          <!-- Evolución Último Mes Arriesgada -->
+          <div class="chart-card">
+            <div class="chart-title">📊 Último Mes</div>
+            <div class="chart-container">
+              <canvas id="monthlyChartArriesgado"></canvas>
+            </div>
+          </div>
+          
+          <!-- Composición del Fondo Arriesgada -->
+          <div class="chart-card">
+            <div class="chart-title">🥧 Composición</div>
+            <div class="chart-container">
+              <canvas id="compositionChartArriesgado"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <!-- Métricas Arriesgada -->
+        <div style="text-align: center; margin-bottom: 60px;">
+          <h3 style="margin-bottom: 30px;">Rendimiento y Métricas</h3>
+          <p style="font-size: 18px; max-width: 700px; margin: 0 auto; line-height: 1.6; color: #727272;">
+            Métricas clave del fondo arriesgado basadas en el rendimiento histórico de los activos componentes.
+          </p>
+        </div>
+
+        <!-- Primera fila de métricas Arriesgada -->
+        <div class="performance-metrics-row" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto 40px auto;">
+          <div class="performance-card">
+            <div class="performance-value" style="color: #9900FF;">95.50%</div>
+            <div class="performance-label">TIR (Tasa Interna de Retorno)</div>
+          </div>
+          <div class="performance-card">
+            <div class="performance-value" style="color: #9900FF;">165</div>
+            <div class="performance-label">Días Positivos</div>
+          </div>
+          <div class="performance-card">
+            <div class="performance-value" style="color: #9900FF;">170</div>
+            <div class="performance-label">Días Negativos</div>
+          </div>
+          <div class="performance-card">
+            <div class="performance-value" style="color: #9900FF;">28.75%</div>
+            <div class="performance-label">Mejor Rendimiento Diario</div>
+          </div>
+        </div>
+
+        <!-- Segunda fila de métricas Arriesgada -->
+        <div class="performance-metrics-row" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto;">
+          <div class="performance-card">
+            <div class="performance-value" style="color: #9900FF;">-22.40%</div>
+            <div class="performance-label">Peor Rendimiento Diario</div>
+          </div>
+          <div class="performance-card">
+            <div class="performance-value" style="color: #9900FF;">0.35%</div>
+            <div class="performance-label">Rendimiento Promedio Diario</div>
+          </div>
+          <div class="performance-card">
+            <div class="performance-value" style="color: #9900FF;">68.90%</div>
+            <div class="performance-label">Rendimiento desde Inicio</div>
+          </div>
+          <div class="performance-card">
+            <div class="performance-value" style="color: #9900FF;">$10.00</div>
+            <div class="performance-label">Inversión Mínima</div>
+          </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 40px;">
+          <a href="https://pro.criptoinvestments.com/es/home" class="btn" style="padding: 15px 30px; font-size: 18px;" target="_blank">Invertir en Cartera Arriesgada</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Comparación Final -->
+    <section class="section fade-in" style="background: #001726; color: white; text-align: center;">
+      <div class="container">
+        <h2 style="color: white; margin-bottom: 30px;">¿Cuál es tu Perfil de Inversor?</h2>
+        <p style="font-size: 18px; margin-bottom: 40px; opacity: 0.9; max-width: 600px; margin-left: auto; margin-right: auto;">
+          Cada cartera está diseñada para diferentes objetivos y tolerancias al riesgo. 
+          Nuestros asesores pueden ayudarte a elegir la estrategia perfecta para ti.
+        </p>
+        <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+          <a href="https://pro.criptoinvestments.com/es/home" class="btn" target="_blank">Ver Todas las Carteras</a>
+          <a href="cripto.html" class="btn" style="background: transparent; border: 2px solid #00FF99; color: #00FF99;">Contactar Asesor</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2025 CriptoInvestment. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const elements = document.querySelectorAll('.fade-in');
+      elements.forEach(el => {
+        el.style.animation = 'fadeInUp 0.8s ease-out';
+      });
+
+      // Configuración común para los gráficos
+      const chartOptions = {
+        responsive: true,
+        maintainAspectRatio: false,
+        interaction: {
+          intersect: false,
+          mode: 'index'
+        },
+        plugins: {
+          legend: {
+            display: true,
+            position: 'bottom',
+            labels: {
+              color: '#727272',
+              font: {
+                size: 12
+              }
+            }
+          }
+        }
+      };
+
+      // 1. Gráfico Evolución Histórica (basado en la primera imagen)
+      const historicalCtx = document.getElementById('historicalChart').getContext('2d');
+      new Chart(historicalCtx, {
+        type: 'line',
+        data: {
+          labels: ['SEPT-24', 'OCT-24', 'NOV-24', 'DIC-24', 'ENE-25', 'FEB-25', 'MAR-25', 'ABR-25', 'MAY-25', 'JUN-25', 'JUL-25', 'AGO-25'],
+          datasets: [{
+            label: 'Cuotaparte ($)',
+            data: [1.00, 1.08, 1.15, 1.38, 1.40, 1.05, 0.95, 1.00, 1.23, 1.25, 1.26, 1.25],
+            borderColor: '#00FF99',
+            backgroundColor: 'rgba(0, 255, 153, 0.1)',
+            borderWidth: 3,
+            fill: true,
+            tension: 0.4,
+            pointBackgroundColor: '#00FF99',
+            pointBorderColor: '#FFFFFF',
+            pointBorderWidth: 2,
+            pointRadius: 5
+          }]
+        },
+        options: {
+          ...chartOptions,
+          scales: {
+            y: {
+              beginAtZero: false,
+              min: 0.80,
+              max: 1.60,
+              ticks: {
+                callback: function(value) {
+                  return '$' + value.toFixed(2);
+                },
+                color: '#727272'
+              },
+              grid: {
+                color: 'rgba(114, 114, 114, 0.1)'
+              }
+            },
+            x: {
+              ticks: {
+                color: '#727272',
+                maxRotation: 45
+              },
+              grid: {
+                color: 'rgba(114, 114, 114, 0.1)'
+              }
+            }
+          },
+          plugins: {
+            legend: {
+              display: false
+            },
+            tooltip: {
+              backgroundColor: 'rgba(0, 23, 38, 0.9)',
+              titleColor: '#FFFFFF',
+              bodyColor: '#00FF99',
+              borderColor: '#00FF99',
+              borderWidth: 1,
+              callbacks: {
+                label: function(context) {
+                  return 'Valor: $' + context.parsed.y.toFixed(2);
+                }
+              }
+            }
+          }
+        }
+      });
+
+      // 2. Gráfico Último Mes (basado en la segunda imagen - mismos datos)
+      const monthlyCtx = document.getElementById('monthlyChart').getContext('2d');
+      new Chart(monthlyCtx, {
+        type: 'line',
+        data: {
+          labels: ['Sem 1', 'Sem 2', 'Sem 3', 'Sem 4'],
+          datasets: [{
+            label: 'Cuotaparte Mensual ($)',
+            data: [1.23, 1.25, 1.26, 1.25],
+            borderColor: '#0099FF',
+            backgroundColor: 'rgba(0, 153, 255, 0.1)',
+            borderWidth: 3,
+            fill: true,
+            tension: 0.4,
+            pointBackgroundColor: '#0099FF',
+            pointBorderColor: '#FFFFFF',
+            pointBorderWidth: 2,
+            pointRadius: 6
+          }]
+        },
+        options: {
+          ...chartOptions,
+          scales: {
+            y: {
+              beginAtZero: false,
+              min: 1.20,
+              max: 1.30,
+              ticks: {
+                callback: function(value) {
+                  return '$' + value.toFixed(2);
+                },
+                color: '#727272'
+              },
+              grid: {
+                color: 'rgba(114, 114, 114, 0.1)'
+              }
+            },
+            x: {
+              ticks: {
+                color: '#727272'
+              },
+              grid: {
+                color: 'rgba(114, 114, 114, 0.1)'
+              }
+            }
+          },
+          plugins: {
+            legend: {
+              display: false
+            },
+            tooltip: {
+              backgroundColor: 'rgba(0, 23, 38, 0.9)',
+              titleColor: '#FFFFFF',
+              bodyColor: '#0099FF',
+              borderColor: '#0099FF',
+              borderWidth: 1,
+              callbacks: {
+                label: function(context) {
+                  return 'Valor: $' + context.parsed.y.toFixed(2);
+                }
+              }
+            }
+          }
+        }
+      });
+
+      // 3. Gráfico de Composición (basado en la tercera imagen)
+      const compositionCtx = document.getElementById('compositionChart').getContext('2d');
+      new Chart(compositionCtx, {
+        type: 'doughnut',
+        data: {
+          labels: ['BTC', 'BCH', 'BNB', 'ETH'],
+          datasets: [{
+            data: [40, 20, 20, 20],
+            backgroundColor: [
+              '#F7931A', // Bitcoin Orange
+              '#8A92B2', // Bitcoin Cash Gray
+              '#F3BA2F', // Binance Yellow
+              '#627EEA'  // Ethereum Blue
+            ],
+            borderColor: '#FFFFFF',
+            borderWidth: 3,
+            hoverBorderWidth: 4,
+            hoverBorderColor: '#00FF99'
+          }]
+        },
+        options: {
+          ...chartOptions,
+          cutout: '50%',
+          plugins: {
+            legend: {
+              display: true,
+              position: 'right',
+              labels: {
+                color: '#727272',
+                font: {
+                  size: 12,
+                  weight: 'bold'
+                },
+                generateLabels: function(chart) {
+                  const data = chart.data;
+                  if (data.labels.length && data.datasets.length) {
+                    return data.labels.map((label, i) => {
+                      const dataset = data.datasets[0];
+                      const value = dataset.data[i];
+                      return {
+                        text: `${label} (${value}%)`,
+                        fillStyle: dataset.backgroundColor[i],
+                        strokeStyle: dataset.borderColor,
+                        lineWidth: dataset.borderWidth,
+                        hidden: false,
+                        index: i
+                      };
+                    });
+                  }
+                  return [];
+                }
+              }
+            },
+            tooltip: {
+              backgroundColor: 'rgba(0, 23, 38, 0.9)',
+              titleColor: '#FFFFFF',
+              bodyColor: '#00FF99',
+              borderColor: '#00FF99',
+              borderWidth: 1,
+              callbacks: {
+                label: function(context) {
+                  return context.label + ': ' + context.parsed + '%';
+                }
+              }
+            }
+          }
+        }
+      });
+
+      // GRÁFICOS CARTERA MODERADA
+      // 1. Gráfico Evolución Histórica Moderada (basado en imagen 2)
+      const historicalModeradoCtx = document.getElementById('historicalChartModerado').getContext('2d');
+      new Chart(historicalModeradoCtx, {
+        type: 'line',
+        data: {
+          labels: ['SEPT-24', 'OCT-24', 'NOV-24', 'DIC-24', 'ENE-25', 'FEB-25', 'MAR-25', 'ABR-25', 'MAY-25', 'JUN-25', 'JUL-25', 'AGO-25'],
+          datasets: [{
+            label: 'Cuotaparte ($)',
+            data: [1.00, 1.08, 1.60, 1.58, 1.55, 1.25, 1.08, 1.15, 1.35, 1.38, 1.36, 1.35],
+            borderColor: '#0099FF',
+            backgroundColor: 'rgba(0, 153, 255, 0.1)',
+            borderWidth: 3,
+            fill: true,
+            tension: 0.4,
+            pointBackgroundColor: '#0099FF',
+            pointBorderColor: '#FFFFFF',
+            pointBorderWidth: 2,
+            pointRadius: 5
+          }]
+        },
+        options: {
+          ...chartOptions,
+          scales: {
+            y: {
+              beginAtZero: false,
+              min: 0.90,
+              max: 1.70,
+              ticks: {
+                callback: function(value) {
+                  return '$' + value.toFixed(2);
+                },
+                color: '#727272'
+              },
+              grid: {
+                color: 'rgba(114, 114, 114, 0.1)'
+              }
+            },
+            x: {
+              ticks: {
+                color: '#727272',
+                maxRotation: 45
+              },
+              grid: {
+                color: 'rgba(114, 114, 114, 0.1)'
+              }
+            }
+          },
+          plugins: {
+            legend: {
+              display: false
+            },
+            tooltip: {
+              backgroundColor: 'rgba(0, 23, 38, 0.9)',
+              titleColor: '#FFFFFF',
+              bodyColor: '#0099FF',
+              borderColor: '#0099FF',
+              borderWidth: 1,
+              callbacks: {
+                label: function(context) {
+                  return 'Valor: $' + context.parsed.y.toFixed(2);
+                }
+              }
+            }
+          }
+        }
+      });
+
+      // 2. Gráfico Último Mes Moderada (basado en imagen 3)
+      const monthlyModeradoCtx = document.getElementById('monthlyChartModerado').getContext('2d');
+      new Chart(monthlyModeradoCtx, {
+        type: 'line',
+        data: {
+          labels: ['1-ago', '5-ago', '9-ago', '13-ago', '17-ago', '21-ago', '25-ago', '29-ago', '31-ago'],
+          datasets: [{
+            label: 'Cuotaparte Mensual ($)',
+            data: [1.32, 1.34, 1.38, 1.42, 1.45, 1.40, 1.38, 1.35, 1.33],
+            borderColor: '#0099FF',
+            backgroundColor: 'rgba(0, 153, 255, 0.1)',
+            borderWidth: 3,
+            fill: true,
+            tension: 0.4,
+            pointBackgroundColor: '#0099FF',
+            pointBorderColor: '#FFFFFF',
+            pointBorderWidth: 2,
+            pointRadius: 4
+          }]
+        },
+        options: {
+          ...chartOptions,
+          scales: {
+            y: {
+              beginAtZero: false,
+              min: 1.30,
+              max: 1.50,
+              ticks: {
+                callback: function(value) {
+                  return '$' + value.toFixed(2);
+                },
+                color: '#727272'
+              },
+              grid: {
+                color: 'rgba(114, 114, 114, 0.1)'
+              }
+            },
+            x: {
+              ticks: {
+                color: '#727272'
+              },
+              grid: {
+                color: 'rgba(114, 114, 114, 0.1)'
+              }
+            }
+          },
+          plugins: {
+            legend: {
+              display: false
+            },
+            tooltip: {
+              backgroundColor: 'rgba(0, 23, 38, 0.9)',
+              titleColor: '#FFFFFF',
+              bodyColor: '#9900FF',
+              borderColor: '#9900FF',
+              borderWidth: 1,
+              callbacks: {
+                label: function(context) {
+                  return 'Valor: $' + context.parsed.y.toFixed(2);
+                }
+              }
+            }
+          }
+        }
+      });
+
+      // 3. Gráfico de Composición Moderada (basado en imagen 4)
+      const compositionModeradoCtx = document.getElementById('compositionChartModerado').getContext('2d');
+      new Chart(compositionModeradoCtx, {
+        type: 'doughnut',
+        data: {
+          labels: ['BTC', 'ETH', 'BNB', 'LTC', 'BCH', 'AVAX', 'MANA'],
+          datasets: [{
+            data: [25, 20, 15, 15, 10, 10, 5],
+            backgroundColor: [
+              '#F7931A', '#627EEA', '#F3BA2F', '#A6A6A6', '#8A92B2',
+              '#E84142', '#FF6B35'
+            ],
+            borderColor: '#FFFFFF',
+            borderWidth: 2,
+            hoverBorderWidth: 3,
+            hoverBorderColor: '#0099FF'
+          }]
+        },
+        options: {
+          ...chartOptions,
+          cutout: '50%',
+          plugins: {
+            legend: {
+              display: true,
+              position: 'right',
+              labels: {
+                color: '#727272',
+                font: {
+                  size: 10,
+                  weight: 'bold'
+                },
+                generateLabels: function(chart) {
+                  const data = chart.data;
+                  if (data.labels.length && data.datasets.length) {
+                    return data.labels.map((label, i) => {
+                      const dataset = data.datasets[0];
+                      const value = dataset.data[i];
+                      return {
+                        text: `${label} (${value}%)`,
+                        fillStyle: dataset.backgroundColor[i],
+                        strokeStyle: dataset.borderColor,
+                        lineWidth: dataset.borderWidth,
+                        hidden: false,
+                        index: i
+                      };
+                    });
+                  }
+                  return [];
+                }
+              }
+            },
+            tooltip: {
+              backgroundColor: 'rgba(0, 23, 38, 0.9)',
+              titleColor: '#FFFFFF',
+              bodyColor: '#0099FF',
+              borderColor: '#0099FF',
+              borderWidth: 1,
+              callbacks: {
+                label: function(context) {
+                  return context.label + ': ' + context.parsed + '%';
+                }
+              }
+            }
+          }
+        }
+      });
+
+      // GRÁFICOS CARTERA ARRIESGADA
+      // 1. Gráfico Evolución Histórica Arriesgada
+      const historicalArriesgadoCtx = document.getElementById('historicalChartArriesgado').getContext('2d');
+      new Chart(historicalArriesgadoCtx, {
+        type: 'line',
+        data: {
+          labels: ['SEPT-24', 'OCT-24', 'NOV-24', 'DIC-24', 'ENE-25', 'FEB-25', 'MAR-25', 'ABR-25', 'MAY-25', 'JUN-25', 'JUL-25', 'AGO-25'],
+          datasets: [{
+            label: 'Cuotaparte ($)',
+            data: [1.00, 1.18, 1.35, 1.65, 1.70, 1.25, 1.10, 1.20, 1.55, 1.60, 1.65, 1.62],
+            borderColor: '#9900FF',
+            backgroundColor: 'rgba(153, 0, 255, 0.1)',
+            borderWidth: 3,
+            fill: true,
+            tension: 0.4,
+            pointBackgroundColor: '#9900FF',
+            pointBorderColor: '#FFFFFF',
+            pointBorderWidth: 2,
+            pointRadius: 5
+          }]
+        },
+        options: {
+          ...chartOptions,
+          scales: {
+            y: {
+              beginAtZero: false,
+              min: 0.90,
+              max: 1.80,
+              ticks: {
+                callback: function(value) {
+                  return '$' + value.toFixed(2);
+                },
+                color: '#727272'
+              },
+              grid: {
+                color: 'rgba(114, 114, 114, 0.1)'
+              }
+            },
+            x: {
+              ticks: {
+                color: '#727272',
+                maxRotation: 45
+              },
+              grid: {
+                color: 'rgba(114, 114, 114, 0.1)'
+              }
+            }
+          },
+          plugins: {
+            legend: {
+              display: false
+            },
+            tooltip: {
+              backgroundColor: 'rgba(0, 23, 38, 0.9)',
+              titleColor: '#FFFFFF',
+              bodyColor: '#9900FF',
+              borderColor: '#9900FF',
+              borderWidth: 1,
+              callbacks: {
+                label: function(context) {
+                  return 'Valor: $' + context.parsed.y.toFixed(2);
+                }
+              }
+            }
+          }
+        }
+      });
+
+      // 2. Gráfico Último Mes Arriesgada
+      const monthlyArriesgadoCtx = document.getElementById('monthlyChartArriesgado').getContext('2d');
+      new Chart(monthlyArriesgadoCtx, {
+        type: 'line',
+        data: {
+          labels: ['Sem 1', 'Sem 2', 'Sem 3', 'Sem 4'],
+          datasets: [{
+            label: 'Cuotaparte Mensual ($)',
+            data: [1.55, 1.60, 1.65, 1.62],
+            borderColor: '#FF0066',
+            backgroundColor: 'rgba(255, 0, 102, 0.1)',
+            borderWidth: 3,
+            fill: true,
+            tension: 0.4,
+            pointBackgroundColor: '#FF0066',
+            pointBorderColor: '#FFFFFF',
+            pointBorderWidth: 2,
+            pointRadius: 6
+          }]
+        },
+        options: {
+          ...chartOptions,
+          scales: {
+            y: {
+              beginAtZero: false,
+              min: 1.50,
+              max: 1.70,
+              ticks: {
+                callback: function(value) {
+                  return '$' + value.toFixed(2);
+                },
+                color: '#727272'
+              },
+              grid: {
+                color: 'rgba(114, 114, 114, 0.1)'
+              }
+            },
+            x: {
+              ticks: {
+                color: '#727272'
+              },
+              grid: {
+                color: 'rgba(114, 114, 114, 0.1)'
+              }
+            }
+          },
+          plugins: {
+            legend: {
+              display: false
+            },
+            tooltip: {
+              backgroundColor: 'rgba(0, 23, 38, 0.9)',
+              titleColor: '#FFFFFF',
+              bodyColor: '#FF0066',
+              borderColor: '#FF0066',
+              borderWidth: 1,
+              callbacks: {
+                label: function(context) {
+                  return 'Valor: $' + context.parsed.y.toFixed(2);
+                }
+              }
+            }
+          }
+        }
+      });
+
+      // 3. Gráfico de Composición Arriesgada
+      const compositionArriesgadoCtx = document.getElementById('compositionChartArriesgado').getContext('2d');
+      new Chart(compositionArriesgadoCtx, {
+        type: 'doughnut',
+        data: {
+          labels: ['ETH', 'SOL', 'AVAX', 'LINK', 'DOT', 'MATIC', 'UNI'],
+          datasets: [{
+            data: [25, 20, 15, 15, 10, 10, 5],
+            backgroundColor: [
+              '#627EEA', '#9945FF', '#E84142', '#375BD2', 
+              '#E6007A', '#FF6B35', '#1652F0'
+            ],
+            borderColor: '#FFFFFF',
+            borderWidth: 3,
+            hoverBorderWidth: 4,
+            hoverBorderColor: '#9900FF'
+          }]
+        },
+        options: {
+          ...chartOptions,
+          cutout: '50%',
+          plugins: {
+            legend: {
+              display: true,
+              position: 'right',
+              labels: {
+                color: '#727272',
+                font: {
+                  size: 12,
+                  weight: 'bold'
+                },
+                generateLabels: function(chart) {
+                  const data = chart.data;
+                  if (data.labels.length && data.datasets.length) {
+                    return data.labels.map((label, i) => {
+                      const dataset = data.datasets[0];
+                      const value = dataset.data[i];
+                      return {
+                        text: `${label} (${value}%)`,
+                        fillStyle: dataset.backgroundColor[i],
+                        strokeStyle: dataset.borderColor,
+                        lineWidth: dataset.borderWidth,
+                        hidden: false,
+                        index: i
+                      };
+                    });
+                  }
+                  return [];
+                }
+              }
+            },
+            tooltip: {
+              backgroundColor: 'rgba(0, 23, 38, 0.9)',
+              titleColor: '#FFFFFF',
+              bodyColor: '#9900FF',
+              borderColor: '#9900FF',
+              borderWidth: 1,
+              callbacks: {
+                label: function(context) {
+                  return context.label + ': ' + context.parsed + '%';
+                }
+              }
+            }
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html>
