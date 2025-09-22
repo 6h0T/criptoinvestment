@@ -759,40 +759,40 @@
         <!-- Primera fila de métricas Arriesgada -->
         <div class="performance-metrics-row" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto 40px auto;">
           <div class="performance-card">
-            <div class="performance-value" style="color: #9900FF;">95.50%</div>
+            <div class="performance-value" style="color: #9900FF;">222.09%</div>
             <div class="performance-label">TIR (Tasa Interna de Retorno)</div>
           </div>
           <div class="performance-card">
-            <div class="performance-value" style="color: #9900FF;">165</div>
+            <div class="performance-value" style="color: #9900FF;">164</div>
             <div class="performance-label">Días Positivos</div>
           </div>
           <div class="performance-card">
-            <div class="performance-value" style="color: #9900FF;">170</div>
-            <div class="performance-label">Días Negativos</div>
+            <div class="performance-value" style="color: #9900FF;">22.44%</div>
+            <div class="performance-label">Mejor Rendimiento Diario</div>
           </div>
           <div class="performance-card">
-            <div class="performance-value" style="color: #9900FF;">28.75%</div>
-            <div class="performance-label">Mejor Rendimiento Diario</div>
+            <div class="performance-value" style="color: #9900FF;">-16.12%</div>
+            <div class="performance-label">Peor Rendimiento Diario</div>
           </div>
         </div>
 
         <!-- Segunda fila de métricas Arriesgada -->
         <div class="performance-metrics-row" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto;">
           <div class="performance-card">
-            <div class="performance-value" style="color: #9900FF;">-22.40%</div>
-            <div class="performance-label">Peor Rendimiento Diario</div>
-          </div>
-          <div class="performance-card">
-            <div class="performance-value" style="color: #9900FF;">0.35%</div>
+            <div class="performance-value" style="color: #9900FF;">0.31%</div>
             <div class="performance-label">Rendimiento Promedio Diario</div>
           </div>
           <div class="performance-card">
-            <div class="performance-value" style="color: #9900FF;">68.90%</div>
+            <div class="performance-value" style="color: #9900FF;">148.06%</div>
             <div class="performance-label">Rendimiento desde Inicio</div>
           </div>
           <div class="performance-card">
-            <div class="performance-value" style="color: #9900FF;">$10.00</div>
+            <div class="performance-value" style="color: #9900FF;">$5.00</div>
             <div class="performance-label">Inversión Mínima</div>
+          </div>
+          <div class="performance-card">
+            <div class="performance-value" style="color: #9900FF;">1 año</div>
+            <div class="performance-label">Duración</div>
           </div>
         </div>
 
@@ -1266,10 +1266,10 @@
       new Chart(historicalArriesgadoCtx, {
         type: 'line',
         data: {
-          labels: ['SEPT-24', 'OCT-24', 'NOV-24', 'DIC-24', 'ENE-25', 'FEB-25', 'MAR-25', 'ABR-25', 'MAY-25', 'JUN-25', 'JUL-25', 'AGO-25'],
+          labels: ['1-ago', '3-ago', '5-ago', '7-ago', '9-ago', '11-ago', '13-ago', '15-ago', '17-ago', '19-ago', '21-ago', '23-ago', '25-ago', '27-ago', '29-ago', '31-ago'],
           datasets: [{
             label: 'Cuotaparte ($)',
-            data: [1.00, 1.18, 1.35, 1.65, 1.70, 1.25, 1.10, 1.20, 1.55, 1.60, 1.65, 1.62],
+            data: [1.00, 1.05, 1.15, 1.25, 1.20, 1.35, 1.45, 1.30, 1.40, 1.50, 1.35, 1.25, 1.30, 1.45, 1.40, 1.48],
             borderColor: '#9900FF',
             backgroundColor: 'rgba(153, 0, 255, 0.1)',
             borderWidth: 3,
@@ -1278,7 +1278,7 @@
             pointBackgroundColor: '#9900FF',
             pointBorderColor: '#FFFFFF',
             pointBorderWidth: 2,
-            pointRadius: 5
+            pointRadius: 4
           }]
         },
         options: {
@@ -1333,19 +1333,19 @@
       new Chart(monthlyArriesgadoCtx, {
         type: 'line',
         data: {
-          labels: ['Sem 1', 'Sem 2', 'Sem 3', 'Sem 4'],
+          labels: ['$350', '$300', '$250', '$200', '$150', '$100', '$50'],
           datasets: [{
-            label: 'Cuotaparte Mensual ($)',
-            data: [1.55, 1.60, 1.65, 1.62],
-            borderColor: '#FF0066',
-            backgroundColor: 'rgba(255, 0, 102, 0.1)',
+            label: 'Evolución Cuotaparte ($)',
+            data: [350, 320, 280, 240, 200, 160, 120],
+            borderColor: '#00CCFF',
+            backgroundColor: 'rgba(0, 204, 255, 0.1)',
             borderWidth: 3,
             fill: true,
             tension: 0.4,
-            pointBackgroundColor: '#FF0066',
+            pointBackgroundColor: '#00CCFF',
             pointBorderColor: '#FFFFFF',
             pointBorderWidth: 2,
-            pointRadius: 6
+            pointRadius: 5
           }]
         },
         options: {
@@ -1353,11 +1353,11 @@
           scales: {
             y: {
               beginAtZero: false,
-              min: 1.50,
-              max: 1.70,
+              min: 100,
+              max: 370,
               ticks: {
                 callback: function(value) {
-                  return '$' + value.toFixed(2);
+                  return '$' + value.toFixed(0);
                 },
                 color: '#727272'
               },
@@ -1381,12 +1381,12 @@
             tooltip: {
               backgroundColor: 'rgba(0, 23, 38, 0.9)',
               titleColor: '#FFFFFF',
-              bodyColor: '#FF0066',
-              borderColor: '#FF0066',
+              bodyColor: '#00CCFF',
+              borderColor: '#00CCFF',
               borderWidth: 1,
               callbacks: {
                 label: function(context) {
-                  return 'Valor: $' + context.parsed.y.toFixed(2);
+                  return 'Valor: $' + context.parsed.y.toFixed(0);
                 }
               }
             }
@@ -1399,12 +1399,14 @@
       new Chart(compositionArriesgadoCtx, {
         type: 'doughnut',
         data: {
-          labels: ['ETH', 'SOL', 'AVAX', 'LINK', 'DOT', 'MATIC', 'UNI'],
+          labels: ['XLM', 'UNI', 'DOGE', 'AVAX'],
           datasets: [{
-            data: [25, 20, 15, 15, 10, 10, 5],
+            data: [25, 25, 25, 25],
             backgroundColor: [
-              '#627EEA', '#9945FF', '#E84142', '#375BD2', 
-              '#E6007A', '#FF6B35', '#1652F0'
+              '#14B6E7', // XLM (Stellar) - Light Blue
+              '#FF007A', // UNI (Uniswap) - Pink
+              '#C2A633', // DOGE (Dogecoin) - Gold
+              '#E84142'  // AVAX (Avalanche) - Red
             ],
             borderColor: '#FFFFFF',
             borderWidth: 3,
