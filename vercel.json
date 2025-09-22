@@ -1,0 +1,62 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "**/*.html",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/",
+      "dest": "/inicio.html"
+    },
+    {
+      "src": "/inicio",
+      "dest": "/inicio.html"
+    },
+    {
+      "src": "/la-empresa",
+      "dest": "/la-empresa.html"
+    },
+    {
+      "src": "/cripto",
+      "dest": "/cripto.html"
+    },
+    {
+      "src": "/opciones-mercado",
+      "dest": "/opciones-mercado.html"
+    },
+    {
+      "src": "/fondo-top3",
+      "dest": "/fondo-top3.html"
+    },
+    {
+      "src": "/fondo-top10",
+      "dest": "/fondo-top10.html"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/$1"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "X-XSS-Protection",
+          "value": "1; mode=block"
+        }
+      ]
+    }
+  ]
+}

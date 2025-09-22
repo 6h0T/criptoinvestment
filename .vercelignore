@@ -1,0 +1,24 @@
+# Archivos de documentación
+*.md
+DOCUMENTACION_CRIPTOINVESTMENT.md
+laempresa.md
+
+# Archivos comprimidos
+*.rar
+*.zip
+templates.rar
+templates.zip
+
+# Archivos de desarrollo
+visor-*.html
+
+# Git
+.git/
+.gitignore
+
+# Archivos temporales
+*.tmp
+*.temp
+
+# Logs
+*.log
