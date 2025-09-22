@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meme Coins - CriptoInvestment</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto', Arial, sans-serif;
+      background: #F1F1F1;
+      color: #727272;
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+
+    /* Tipografía basada en el UI Kit */
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Rajdhani', Arial, sans-serif;
+      font-weight: 700;
+      color: #001726;
+      text-transform: capitalize;
+    }
+
+    h1 { font-size: 57px; line-height: 1.1; letter-spacing: -2px; }
+    h2 { font-size: 44px; line-height: 1.1; letter-spacing: -1px; }
+    h3 { font-size: 33px; line-height: 1.2; letter-spacing: -1px; }
+
+    /* Header */
+    .header {
+      background: rgba(0, 23, 38, 0.9);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 15px 0;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+
+    .header-content {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+    }
+
+    .logo {
+      font-family: 'Rajdhani', Arial, sans-serif;
+      font-size: 24px;
+      font-weight: 700;
+      color: #FFFFFF;
+      text-decoration: none;
+    }
+
+    .nav {
+      display: flex;
+      gap: 25px;
+      align-items: center;
+    }
+
+    .nav a, .dropdown {
+      color: #FFFFFF;
+      text-decoration: none;
+      font-family: 'Rajdhani', Arial, sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      text-transform: uppercase;
+      transition: color 0.3s ease;
+      position: relative;
+    }
+
+    .nav a:hover, .nav a.active, .dropdown:hover {
+      color: #00CCFF;
+    }
+
+    /* Dropdown */
+    .dropdown {
+      cursor: pointer;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: #001726;
+      min-width: 200px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+      border-radius: 5px;
+      z-index: 1001;
+      margin-top: 5px;
+      padding-top: 5px;
+    }
+
+    .dropdown-content a {
+      color: #FFFFFF;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      text-transform: none;
+      font-size: 14px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .dropdown-content a:hover {
+      background: #0099FF;
+      color: #FFFFFF;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+      opacity: 1;
+    }
+
+    .btn {
+      background: #00FF99;
+      color: #001726;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 5px;
+      font-family: 'Rajdhani', Arial, sans-serif;
+      font-size: 17px;
+      font-weight: 500;
+      text-transform: capitalize;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+      background: #9900FF;
+      color: #FFFFFF;
+    }
+
+    /* Hero Section */
+    .hero {
+      position: relative;
+      min-height: 70vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #FFFFFF;
+      padding: 100px 20px 50px;
+      overflow: hidden;
+      background: linear-gradient(135deg, #001726 0%, #0099FF 50%, #00FF99 100%);
+    }
+
+    .hero-content {
+      max-width: 900px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero h1 {
+      font-size: 73px;
+      color: #FFFFFF;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .hero p {
+      font-size: 20px;
+      margin-bottom: 30px;
+      opacity: 0.9;
+      line-height: 1.6;
+    }
+
+    /* Secciones */
+    .section {
+      padding: 80px 20px;
+      width: 100vw;
+      position: relative;
+      left: 50%;
+      right: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .card {
+      background: #FFFFFF;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    /* Footer */
+    .footer {
+      background: #001726;
+      color: #FFFFFF;
+      padding: 50px 20px 20px;
+      text-align: center;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 44px; }
+      .nav { display: none; }
+    }
+
+    /* Animaciones */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-in {
+      animation: fadeInUp 0.8s ease-out;
+    }
+
+    /* Estilos específicos para meme coins */
+    .meme-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+      margin-top: 40px;
+    }
+
+    .meme-coin {
+      background: white;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .meme-coin:hover {
+      transform: translateY(-5px);
+    }
+
+    .meme-coin img {
+      width: 50px;
+      height: 50px;
+      margin-bottom: 15px;
+    }
+
+    .meme-coin h5 {
+      margin-bottom: 8px;
+      color: #001726;
+      font-size: 18px;
+    }
+
+    .meme-coin .percentage {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: #FF6B35;
+    }
+
+    .meme-coin .symbol {
+      font-size: 12px;
+      color: #727272;
+      font-weight: 600;
+    }
+
+    .risk-warning {
+      background: linear-gradient(135deg, #FF0066 0%, #FF6B35 100%);
+      color: white;
+      padding: 30px;
+      border-radius: 15px;
+      text-align: center;
+      margin: 40px 0;
+    }
+
+    .performance-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .performance-card {
+      background: white;
+      padding: 25px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .performance-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .performance-value {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: #FF6B35;
+    }
+
+    .performance-label {
+      color: #727272;
+      font-size: 14px;
+    }
+
+    /* Estilos específicos para carteras arriesgadas */
+    .portfolio-section {
+      margin-bottom: 80px;
+    }
+
+    .portfolio-header {
+      text-align: center;
+      margin-bottom: 60px;
+      padding: 40px;
+      border-radius: 20px;
+      color: white;
+    }
+
+    .arriesgado {
+      background: linear-gradient(135deg, #9900FF 0%, #FF0066 100%);
+    }
+
+    /* Estilos específicos para métricas en filas */
+    .performance-metrics-row {
+      margin-bottom: 40px;
+    }
+
+    .performance-metrics-row .performance-card {
+      background: white;
+      padding: 25px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .performance-metrics-row .performance-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+
+    .performance-metrics-row .performance-value {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .performance-metrics-row .performance-label {
+      color: #727272;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    /* Estilos para gráficos */
+    .chart-container {
+      position: relative;
+      height: 250px;
+      margin-bottom: 20px;
+    }
+
+    .chart-card {
+      background: white;
+      border-radius: 15px;
+      padding: 25px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: 1px solid rgba(0, 255, 153, 0.1);
+    }
+
+    .chart-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+      border-color: rgba(0, 255, 153, 0.3);
+    }
+
+    .chart-title {
+      color: #00FF99;
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    /* Responsive para carteras */
+    @media (max-width: 768px) {
+      .performance-metrics-row {
+        grid-template-columns: repeat(2, 1fr) !important;
+      }
+
+      .chart-container {
+        height: 200px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .performance-metrics-row {
+        grid-template-columns: 1fr !important;
+      }
+
+      .chart-container {
+        height: 180px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="header-content">
+      <a href="inicio.html" class="logo">CriptoInvestment</a>
+      <nav class="nav">
+        <a href="inicio.html">Inicio</a>
+        <a href="la-empresa.html">La Empresa</a>
+        <a href="#glosario">Glosario</a>
+        <a href="cripto.html">Compra Cripto</a>
+        <div class="dropdown active">
+          Opciones de Mercado
+          <div class="dropdown-content">
+            <a href="fondo-top3.html">Fondo Top 3 Market Cap</a>
+            <a href="fondo-top10.html">Fondo Top 10 Market Cap</a>
+            <a href="estilos-inversion.html">Estilos de Inversión</a>
+            <a href="memecoins.html">Meme Coins</a>
+            <a href="opciones-mercado.html#comparador">Comparador de fondos</a>
+          </div>
+        </div>
+        <a href="#contacto">Contacto</a>
+      </nav>
+      <a href="#" class="btn">Get Started</a>
+    </div>
+  </header>
+
+  <!-- Contenido Principal -->
+  <main>
+    <!-- Hero Section -->
+    <section class="hero fade-in">
+      <div class="hero-content">
+        <h1>🚀 Meme Coins Portfolio</h1>
+        <p>
+          Portfolio basado en las criptomonedas más difundidas en redes sociales. 
+          Una estrategia de alto riesgo y alto potencial de retorno que se balancea automáticamente cada semana.
+        </p>
+      </div>
+    </section>
+
+    <!-- Advertencia de Riesgo -->
+    <section class="section fade-in" style="background: #FFFFFF;">
+      <div class="container">
+        <div class="risk-warning">
+          <h2 style="color: white; margin-bottom: 20px;">⚠️ ADVERTENCIA DE RIESGO ALTO</h2>
+          <p style="font-size: 18px; opacity: 0.9;">
+            Las meme coins son activos extremadamente volátiles que pueden experimentar fluctuaciones de precio 
+            dramáticas en períodos muy cortos. Este portfolio está diseñado para inversores experimentados 
+            que comprenden y pueden asumir pérdidas significativas.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Qué son las Meme Coins -->
+    <section class="section fade-in" style="background: #F8F9FA;">
+      <div class="container">
+        <div style="text-align: center; margin-bottom: 60px;">
+          <h2 style="margin-bottom: 30px;">¿Qué son las Meme Coins?</h2>
+          <p style="font-size: 18px; max-width: 800px; margin: 0 auto; line-height: 1.6;">
+            Las meme coins son criptomonedas que se originan como bromas o memes en internet, pero que han ganado 
+            popularidad masiva a través de las redes sociales. Aunque comenzaron como proyectos humorísticos, 
+            muchas han desarrollado comunidades sólidas y casos de uso reales.
+          </p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+          <div class="card">
+            <h3 style="color: #FF6B35; margin-bottom: 20px;">📱 Impulsadas por Redes Sociales</h3>
+            <p>Su valor está fuertemente influenciado por la viralidad en plataformas como Twitter, Reddit y TikTok.</p>
+          </div>
+          <div class="card">
+            <h3 style="color: #FF0066; margin-bottom: 20px;">👥 Comunidades Fuertes</h3>
+            <p>Desarrollan bases de seguidores leales que impulsan la adopción y el precio a través del marketing viral.</p>
+          </div>
+          <div class="card">
+            <h3 style="color: #9900FF; margin-bottom: 20px;">⚡ Alta Volatilidad</h3>
+            <p>Pueden experimentar aumentos o caídas de cientos de por ciento en cuestión de horas o días.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- Cartera Arriesgada de Estilos de Inversión -->
+    <section class="section portfolio-section fade-in" style="background: #F8F9FA;">
+      <div class="container">
+        <!-- Charts Arriesgada -->
+        <div style="text-align: center; margin-bottom: 60px;">
+          <h3 style="margin-bottom: 30px;">Análisis de Performance</h3>
+        </div>
+
+        <!-- Gráficos de Análisis Arriesgada -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; margin-bottom: 60px;">
+          <!-- Evolución Histórica Arriesgada -->
+          <div class="chart-card">
+            <div class="chart-title">📈 Evolución Histórica</div>
+            <div class="chart-container">
+              <canvas id="historicalChartArriesgado"></canvas>
+            </div>
+          </div>
+          
+          <!-- Evolución Último Mes Arriesgada -->
+          <div class="chart-card">
+            <div class="chart-title">📊 Último Mes</div>
+            <div class="chart-container">
+              <canvas id="monthlyChartArriesgado"></canvas>
+            </div>
+          </div>
+          
+          <!-- Composición del Fondo Arriesgada -->
+          <div class="chart-card">
+            <div class="chart-title">🥧 Composición</div>
+            <div class="chart-container">
+              <canvas id="compositionChartArriesgado"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <!-- Información del Fondo -->
+        <div style="text-align: center; margin-bottom: 60px;">
+          <h3 style="margin-bottom: 30px;">Información del Fondo FCI - MEME COINS</h3>
+          <p style="font-size: 18px; max-width: 700px; margin: 0 auto; line-height: 1.6; color: #727272;">
+            Datos actualizados al 31/08/2025 - Patrimonio Neto: USD $22.200,10
+          </p>
+        </div>
+
+        <!-- Información General del Fondo -->
+        <div class="performance-metrics-row" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto 40px auto;">
+          <div class="performance-card">
+            <div class="performance-value" style="color: #00CCFF;">75,70%</div>
+            <div class="performance-label">TIR</div>
+          </div>
+          <div class="performance-card">
+            <div class="performance-value" style="color: #00CCFF;">USD $5,00</div>
+            <div class="performance-label">Inversión Mínima</div>
+          </div>
+          <div class="performance-card">
+            <div class="performance-value" style="color: #00CCFF;">Corto Plazo</div>
+            <div class="performance-label">Horizonte de Inversión</div>
+          </div>
+          <div class="performance-card">
+            <div class="performance-value" style="color: #00CCFF;">01/09/2024</div>
+            <div class="performance-label">Fecha de Inicio</div>
+          </div>
+        </div>
+
+        <!-- Información Estadística -->
+        <div class="performance-metrics-row" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto;">
+          <div class="performance-card">
+            <div class="performance-value" style="color: #00CCFF;">166</div>
+            <div class="performance-label">Días Positivos</div>
+          </div>
+          <div class="performance-card">
+            <div class="performance-value" style="color: #00CCFF;">169</div>
+            <div class="performance-label">Días Negativos</div>
+          </div>
+          <div class="performance-card">
+            <div class="performance-value" style="color: #00CCFF;">20,46%</div>
+            <div class="performance-label">Mejor Rendimiento Diario</div>
+          </div>
+          <div class="performance-card">
+            <div class="performance-value" style="color: #00CCFF;">-16,51%</div>
+            <div class="performance-label">Peor Rendimiento Diario</div>
+          </div>
+        </div>
+
+        <!-- Información Adicional -->
+        <div class="performance-metrics-row" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; max-width: 1000px; margin: 40px auto 0 auto;">
+          <div class="performance-card">
+            <div class="performance-value" style="color: #00CCFF;">0,09%</div>
+            <div class="performance-label">Rendimiento Promedio Diario</div>
+          </div>
+          <div class="performance-card">
+            <div class="performance-value" style="color: #00CCFF;">44,16%</div>
+            <div class="performance-label">Rendimiento desde Inicio</div>
+          </div>
+          <div class="performance-card">
+            <div class="performance-value" style="color: #00CCFF;">USDT</div>
+            <div class="performance-label">Moneda del Fondo</div>
+          </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 40px;">
+          <a href="https://pro.criptoinvestments.com/es/home" class="btn" style="padding: 15px 30px; font-size: 18px;" target="_blank">Invertir en FCI Meme Coins</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Final -->
+    <section class="section fade-in" style="background: #001726; color: white; text-align: center;">
+      <div class="container">
+        <h2 style="color: white; margin-bottom: 30px;">¿Listo para el Riesgo?</h2>
+        <p style="font-size: 18px; margin-bottom: 40px; opacity: 0.9; max-width: 600px; margin-left: auto; margin-right: auto;">
+          Solo para inversores experimentados que comprenden los riesgos extremos. 
+          Las meme coins pueden generar grandes ganancias, pero también grandes pérdidas.
+        </p>
+        <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+          <a href="https://pro.criptoinvestments.com/es/home" class="btn" target="_blank">Invertir en Meme Coins</a>
+          <a href="opciones-mercado.html" class="btn" style="background: transparent; border: 2px solid #00FF99; color: #00FF99;">Ver Otras Opciones</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2025 CriptoInvestment. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const elements = document.querySelectorAll('.fade-in');
+      elements.forEach(el => {
+        el.style.animation = 'fadeInUp 0.8s ease-out';
+      });
+
+      // Configuración común para los gráficos
+      const chartOptions = {
+        responsive: true,
+        maintainAspectRatio: false,
+        interaction: {
+          intersect: false,
+          mode: 'index'
+        },
+        plugins: {
+          legend: {
+            display: true,
+            position: 'bottom',
+            labels: {
+              color: '#727272',
+              font: {
+                size: 12
+              }
+            }
+          }
+        }
+      };
+
+      // GRÁFICOS FCI MEME COINS
+      // 1. Gráfico Evolución Histórica (basado en imagen 2)
+      const historicalArriesgadoCtx = document.getElementById('historicalChartArriesgado').getContext('2d');
+      new Chart(historicalArriesgadoCtx, {
+        type: 'line',
+        data: {
+          labels: ['SEPT-24', 'OCT-24', 'NOV-24', 'DIC-24', 'ENE-25', 'FEB-25', 'MAR-25', 'ABR-25', 'MAY-25', 'JUN-25', 'JUL-25', 'AGO-25'],
+          datasets: [{
+            label: 'Cuotaparte ($)',
+            data: [1.00, 1.00, 1.95, 1.50, 1.25, 0.75, 0.65, 0.75, 0.85, 0.90, 0.95, 0.90],
+            borderColor: '#00CCFF',
+            backgroundColor: 'rgba(0, 204, 255, 0.1)',
+            borderWidth: 3,
+            fill: true,
+            tension: 0.4,
+            pointBackgroundColor: '#00CCFF',
+            pointBorderColor: '#FFFFFF',
+            pointBorderWidth: 2,
+            pointRadius: 4
+          }]
+        },
+        options: {
+          ...chartOptions,
+          scales: {
+            y: {
+              beginAtZero: false,
+              min: 0.50,
+              max: 2.50,
+              ticks: {
+                callback: function(value) {
+                  return '$' + value.toFixed(2);
+                },
+                color: '#727272'
+              },
+              grid: {
+                color: 'rgba(114, 114, 114, 0.1)'
+              }
+            },
+            x: {
+              ticks: {
+                color: '#727272',
+                maxRotation: 45
+              },
+              grid: {
+                color: 'rgba(114, 114, 114, 0.1)'
+              }
+            }
+          },
+          plugins: {
+            legend: {
+              display: false
+            },
+            tooltip: {
+              backgroundColor: 'rgba(0, 23, 38, 0.9)',
+              titleColor: '#FFFFFF',
+              bodyColor: '#00CCFF',
+              borderColor: '#00CCFF',
+              borderWidth: 1,
+              callbacks: {
+                label: function(context) {
+                  return 'Valor: $' + context.parsed.y.toFixed(2);
+                }
+              }
+            }
+          }
+        }
+      });
+
+      // 2. Gráfico Último Mes (basado en imagen 3)
+      const monthlyArriesgadoCtx = document.getElementById('monthlyChartArriesgado').getContext('2d');
+      new Chart(monthlyArriesgadoCtx, {
+        type: 'line',
+        data: {
+          labels: ['1-ago', '3-ago', '5-ago', '7-ago', '9-ago', '11-ago', '13-ago', '15-ago', '17-ago', '19-ago', '21-ago', '23-ago', '25-ago', '27-ago', '29-ago', '31-ago'],
+          datasets: [{
+            label: 'Evolución Cuotaparte ($)',
+            data: [0.85, 0.87, 0.89, 0.92, 0.90, 0.88, 0.91, 0.93, 0.89, 0.87, 0.90, 0.92, 0.88, 0.86, 0.89, 0.90],
+            borderColor: '#14B6E7',
+            backgroundColor: 'rgba(20, 182, 231, 0.1)',
+            borderWidth: 3,
+            fill: true,
+            tension: 0.4,
+            pointBackgroundColor: '#14B6E7',
+            pointBorderColor: '#FFFFFF',
+            pointBorderWidth: 2,
+            pointRadius: 3
+          }]
+        },
+        options: {
+          ...chartOptions,
+          scales: {
+            y: {
+              beginAtZero: false,
+              min: 0.80,
+              max: 1.00,
+              ticks: {
+                callback: function(value) {
+                  return '$' + value.toFixed(2);
+                },
+                color: '#727272'
+              },
+              grid: {
+                color: 'rgba(114, 114, 114, 0.1)'
+              }
+            },
+            x: {
+              ticks: {
+                color: '#727272',
+                maxRotation: 45
+              },
+              grid: {
+                color: 'rgba(114, 114, 114, 0.1)'
+              }
+            }
+          },
+          plugins: {
+            legend: {
+              display: false
+            },
+            tooltip: {
+              backgroundColor: 'rgba(0, 23, 38, 0.9)',
+              titleColor: '#FFFFFF',
+              bodyColor: '#14B6E7',
+              borderColor: '#14B6E7',
+              borderWidth: 1,
+              callbacks: {
+                label: function(context) {
+                  return 'Valor: $' + context.parsed.y.toFixed(2);
+                }
+              }
+            }
+          }
+        }
+      });
+
+      // 3. Gráfico de Composición FCI Meme Coins (basado en imagen 4)
+      const compositionArriesgadoCtx = document.getElementById('compositionChartArriesgado').getContext('2d');
+      new Chart(compositionArriesgadoCtx, {
+        type: 'doughnut',
+        data: {
+          labels: ['WIF', 'PEPE', 'SHIB', 'DOGE'],
+          datasets: [{
+            data: [25, 25, 25, 25],
+            backgroundColor: [
+              '#00CCFF', // WIF - Cyan
+              '#FF6B35', // PEPE - Orange
+              '#14B6E7', // SHIB - Light Blue
+              '#2E8B57'  // DOGE - Dark Green
+            ],
+            borderColor: '#FFFFFF',
+            borderWidth: 3,
+            hoverBorderWidth: 4,
+            hoverBorderColor: '#00CCFF'
+          }]
+        },
+        options: {
+          ...chartOptions,
+          cutout: '50%',
+          plugins: {
+            legend: {
+              display: true,
+              position: 'right',
+              labels: {
+                color: '#727272',
+                font: {
+                  size: 12,
+                  weight: 'bold'
+                },
+                generateLabels: function(chart) {
+                  const data = chart.data;
+                  if (data.labels.length && data.datasets.length) {
+                    return data.labels.map((label, i) => {
+                      const dataset = data.datasets[0];
+                      const value = dataset.data[i];
+                      return {
+                        text: `${label} (${value}%)`,
+                        fillStyle: dataset.backgroundColor[i],
+                        strokeStyle: dataset.borderColor,
+                        lineWidth: dataset.borderWidth,
+                        hidden: false,
+                        index: i
+                      };
+                    });
+                  }
+                  return [];
+                }
+              }
+            },
+            tooltip: {
+              backgroundColor: 'rgba(0, 23, 38, 0.9)',
+              titleColor: '#FFFFFF',
+              bodyColor: '#9900FF',
+              borderColor: '#9900FF',
+              borderWidth: 1,
+              callbacks: {
+                label: function(context) {
+                  return context.label + ': ' + context.parsed + '%';
+                }
+              }
+            }
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html>
