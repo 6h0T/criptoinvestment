@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Glosario Cripto - CriptoInvestment</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto', Arial, sans-serif;
+      background: #F1F1F1;
+      color: #727272;
+      line-height: 1.5;
+    }
+
+    /* Tipografía basada en el UI Kit */
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Rajdhani', Arial, sans-serif;
+      font-weight: 700;
+      color: #001726;
+      text-transform: capitalize;
+    }
+
+    h1 { font-size: 57px; line-height: 1.1; letter-spacing: -2px; }
+    h2 { font-size: 44px; line-height: 1.1; letter-spacing: -1px; }
+    h3 { font-size: 33px; line-height: 1.2; letter-spacing: -1px; }
+    h4 { font-size: 28px; line-height: 1.2; }
+    h5 { font-size: 21px; line-height: 1.2; }
+    h6 { font-size: 18px; line-height: 1.2; letter-spacing: 2px; text-transform: uppercase; color: #0099FF; }
+
+    /* Colores del UI Kit */
+    .primary { color: #0099FF; }
+    .secondary { color: #001726; }
+    .accent { color: #00FF99; }
+    .accent2 { color: #9900FF; }
+    .text { color: #727272; }
+
+    /* Header */
+    .header {
+      background: rgba(0, 23, 38, 0.9);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 15px 0;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+
+    .header-content {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+    }
+
+    .logo {
+      font-family: 'Rajdhani', Arial, sans-serif;
+      font-size: 24px;
+      font-weight: 700;
+      color: #FFFFFF;
+      text-decoration: none;
+    }
+
+    .nav {
+      display: flex;
+      gap: 25px;
+    }
+
+    .nav a {
+      color: #FFFFFF;
+      text-decoration: none;
+      font-family: 'Rajdhani', Arial, sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0px;
+      transition: color 0.3s ease;
+    }
+
+    .nav a:hover, .nav a.active {
+      color: #00CCFF;
+    }
+
+    .btn {
+      background: #00FF99;
+      color: #001726;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 5px;
+      font-family: 'Rajdhani', Arial, sans-serif;
+      font-size: 17px;
+      font-weight: 500;
+      text-transform: capitalize;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .btn:hover {
+      background: #9900FF;
+      color: #FFFFFF;
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Hero Section */
+    .hero {
+      position: relative;
+      min-height: 30vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #FFFFFF;
+      padding: 130px 20px 50px;
+      overflow: hidden;
+      background: linear-gradient(135deg, #001726 0%, #0099FF 50%, #00FF99 100%);
+    }
+
+    .hero-content {
+      max-width: 800px;
+    }
+
+    .hero h1 {
+      font-size: 73px;
+      color: #FFFFFF;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .hero p {
+      font-size: 20px;
+      margin-bottom: 30px;
+      opacity: 0.9;
+    }
+
+    /* Secciones */
+    .section {
+      padding: 80px 20px;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* Estilos para términos del glosario */
+    .glossary-term {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: center;
+      margin-bottom: 80px;
+      background: #FFFFFF;
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .glossary-term:hover {
+      transform: translateY(-5px);
+    }
+
+    .glossary-term.reverse {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .glossary-term.reverse .term-content {
+      order: 2;
+    }
+
+    .glossary-term.reverse .term-media {
+      order: 1;
+    }
+
+    .term-content h3 {
+      color: #001726;
+      margin-bottom: 20px;
+      font-size: 28px;
+    }
+
+    .term-content p {
+      color: #727272;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    .term-media {
+      background: #F1F1F1;
+      border-radius: 10px;
+      height: 250px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #727272;
+      font-style: italic;
+      border: 2px dashed #0099FF;
+    }
+
+    /* Alternating colors for term titles */
+    .glossary-term:nth-child(odd) h3 {
+      color: #0099FF;
+    }
+
+    .glossary-term:nth-child(even) h3 {
+      color: #00FF99;
+    }
+
+    .glossary-term:nth-child(3n) h3 {
+      color: #9900FF;
+    }
+
+    /* Footer */
+    .footer {
+      background: #001726;
+      color: #FFFFFF;
+      padding: 50px 20px 20px;
+      text-align: center;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: #FFFFFF;
+      text-decoration: none;
+      font-size: 14px;
+      opacity: 0.8;
+      transition: opacity 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      opacity: 1;
+      color: #00FF99;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 44px; }
+      .hero p { font-size: 16px; }
+      h1 { font-size: 36px; }
+      h2 { font-size: 30px; }
+      h3 { font-size: 24px; }
+      .nav { display: none; }
+      .header-content { justify-content: space-between; }
+      
+      .glossary-term {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        padding: 30px 20px;
+      }
+      
+      .glossary-term.reverse {
+        grid-template-columns: 1fr;
+      }
+      
+      .glossary-term.reverse .term-content,
+      .glossary-term.reverse .term-media {
+        order: unset;
+      }
+      
+      .term-media {
+        height: 200px;
+      }
+    }
+
+    /* Animaciones */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-in {
+      animation: fadeInUp 0.8s ease-out;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="header-content">
+      <a href="inicio.html" class="logo">CriptoInvestment</a>
+      <nav class="nav">
+        <a href="inicio.html">Inicio</a>
+        <a href="la-empresa.html">La Empresa</a>
+        <a href="glosario.html" class="active">Glosario</a>
+        <a href="cripto.html">Compra Cripto</a>
+        <a href="opciones-mercado.html">Opciones de Mercado</a>
+        <a href="contacto.html">Contacto</a>
+      </nav>
+      <a href="#" class="btn">Get Started</a>
+    </div>
+  </header>
+
+  <!-- Contenido Principal -->
+  <main>
+    <!-- Hero Section -->
+    <section class="hero fade-in">
+      <div class="hero-content">
+        <h1>Glosario Cripto</h1>
+        <p>Te traemos un glosario con los principales conceptos cripto</p>
+      </div>
+    </section>
+
+    <!-- Términos del Glosario -->
+    <section class="section fade-in">
+      <div class="container">
+        
+        <!-- Bitcoin -->
+        <div class="glossary-term">
+          <div class="term-content">
+            <h3>Bitcoin</h3>
+            <p>moneda descentralizada, creada por Satoshi Nakamoto, que sirve para intercambiar bienes y servicios, al igual que el Euro y el Dólar estadounidense. Sin embargo, a diferencia de estas, BTC es una divisa virtual que presenta novedades y se destaca por su seguridad, eficiencia y facilidad de cambio.</p>
+          </div>
+          <div class="term-media">
+            Imagen/Video de Bitcoin
+          </div>
+        </div>
+
+        <!-- Blockchain -->
+        <div class="glossary-term reverse">
+          <div class="term-content">
+            <h3>Blockchain</h3>
+            <p>nos referimos a un enorme libro de cuentas en los que los registros (los bloques) están enlazados y cifrados para proteger la seguridad y privacidad de las transacciones. Con otras palabras, es una base de datos distribuida y segura (gracias al cifrado) que se puede aplicar a todo tipo de transacciones que no tienen por qué ser necesariamente económicas.</p>
+          </div>
+          <div class="term-media">
+            Imagen/Video de Blockchain
+          </div>
+        </div>
+
+        <!-- Minero -->
+        <div class="glossary-term">
+          <div class="term-content">
+            <h3>Minero</h3>
+            <p>Quienes se encargan de crear los bitcoins, lo hacen a través de una maquinaria que consta de equipos informáticos complejos que realizan cálculos computacionales. La compensación que obtienen los mineros por este trabajo son dos incentivos: nuevos bitcoins que se ponen en circulación y la comisión de las transacciones.</p>
+          </div>
+          <div class="term-media">
+            Imagen/Video de Minería
+          </div>
+        </div>
+
+        <!-- Fork -->
+        <div class="glossary-term reverse">
+          <div class="term-content">
+            <h3>Fork</h3>
+            <p>una bifurcación (fork, en inglés) es la creación de un proyecto en una dirección distinta del proyecto principal u oficial a partir del código fuente de este ya existente. Sin embargo, en las redes blockchain, estas bifurcaciones pueden tomar dos orientaciones: se pueden usar tanto como para diseñar nuevos proyectos partiendo de uno anterior, o para la actualización de uno en cuestión. Existen dos tipos, las bifurcaciones suaves (soft) y las duras (hard).</p>
+          </div>
+          <div class="term-media">
+            Imagen/Video de Fork
+          </div>
+        </div>
+
+        <!-- Satoshi -->
+        <div class="glossary-term">
+          <div class="term-content">
+            <h3>Satoshi</h3>
+            <p>es la unidad mínima de cuenta del bitcoin. La fracción más pequeña en la que se puede dividir la divisa. De igual manera en que un euro es divisible en 100 céntimos, un bitcoin es divisible en 100,000,000 de "céntimos" llamados satoshis. Permitiendo reflejar saldos de hasta ocho decimales. Por tanto, la fracción mínima de un bitcoin sería 0,00000001.</p>
+          </div>
+          <div class="term-media">
+            Imagen/Video de Satoshi
+          </div>
+        </div>
+
+        <!-- Ethereum -->
+        <div class="glossary-term reverse">
+          <div class="term-content">
+            <h3>Ethereum</h3>
+            <p>nos referimos a una plataforma de open source, es decir, de código abierto, basada en el modelo blockchain. La misma es descentralizada y permite que cualquiera pueda crear contratos inteligentes (programas informáticos que ejecutan acuerdos registrados entre dos o más partes) y aplicaciones en pocas líneas de código. Además de ser un protocolo, Ethereum también provee su propia criptomoneda (Ether), que representa un valor financiero, un activo digital, un token para la gestión dentro de la red. Podemos pensar a la plataforma como un casino y a los tokens como las fichas que se utilizan para acceder a los juegos.</p>
+          </div>
+          <div class="term-media">
+            Imagen/Video de Ethereum
+          </div>
+        </div>
+
+        <!-- Halving -->
+        <div class="glossary-term">
+          <div class="term-content">
+            <h3>Halving</h3>
+            <p>mecanismo implementado por algunas blockchains para reducir a la mitad las recompensas otorgadas a los mineros que ofrecen su poder computacional a la red. Esta reducción de los ingresos mineros no es realizada por un ente u organización, sino en cambio esta programado en el software de Bitcoin para establecer cuántos bitcoins se irán liberando a medida que los grupos mineros vayan creando bloques en su tarea de validar transacciones.</p>
+          </div>
+          <div class="term-media">
+            Imagen/Video de Halving
+          </div>
+        </div>
+
+        <!-- Sharding -->
+        <div class="glossary-term reverse">
+          <div class="term-content">
+            <h3>Sharding</h3>
+            <p>es un método de fragmentación de base de datos, también conocido como un método de fragmentación horizontal. Dicho proceso implica una división de la gran base de datos en segmentos más pequeños y más manejables, con la idea de mejorar el rendimiento y reducir el tiempo de respuesta de la consulta.</p>
+          </div>
+          <div class="term-media">
+            Imagen/Video de Sharding
+          </div>
+        </div>
+
+        <!-- Faucet -->
+        <div class="glossary-term">
+          <div class="term-content">
+            <h3>Faucet</h3>
+            <p>La traducción del inglés al español de faucet es "fuente" y, tal como esta indica, significa que es un lugar donde brotan o surgen criptomonedas. Las monedas virtuales que nos regalan en estos lugares son como pequeñas gotas de agua que van saliendo de esta fuente, son cantidades muy pequeñas. Estas cantidades pueden ir variando dependiendo la criptomoneda que se reparte, o del propio funcionamiento tenga la plataforma.</p>
+          </div>
+          <div class="term-media">
+            Imagen/Video de Faucet
+          </div>
+        </div>
+
+        <!-- Token -->
+        <div class="glossary-term reverse">
+          <div class="term-content">
+            <h3>Token</h3>
+            <p>un 'token' (en inglés, ficha, como las que se utilizan en los casinos) en realidad no es otra cosa que un nuevo término para una unidad de valor emitida por una entidad privada.</p>
+          </div>
+          <div class="term-media">
+            Imagen/Video de Token
+          </div>
+        </div>
+
+        <!-- Proof of Stake -->
+        <div class="glossary-term">
+          <div class="term-content">
+            <h3>Proof of Stake (POS)</h3>
+            <p>proceso por el cual se mantienen fondos depositados en un criptomonedero, con el objetivo de soportar las operaciones de una red blockchain. En esencia, consiste en mantener las criptomonedas bloqueadas en dicho depósito para así recibir recompensas. En la mayoría de casos, el proceso depende de la participación de los usuarios en las actividades de la blockchain a través de un criptomonedero personal.</p>
+          </div>
+          <div class="term-media">
+            Imagen/Video de Proof of Stake
+          </div>
+        </div>
+
+        <!-- Smart contracts -->
+        <div class="glossary-term reverse">
+          <div class="term-content">
+            <h3>Smart contracts</h3>
+            <p>Un contrato inteligente es un programa informático que facilita, asegura, hace cumplir y ejecuta acuerdos registrados entre dos o más partes (por ejemplo personas u organizaciones). Como tales ellos les ayudarían en la negociación y definición de tales acuerdos que causarán que ciertas acciones sucedan como resultado de que se cumplan una serie de condiciones específicas</p>
+          </div>
+          <div class="term-media">
+            Imagen/Video de Smart Contracts
+          </div>
+        </div>
+
+        <!-- Starcoins -->
+        <div class="glossary-term">
+          <div class="term-content">
+            <h3>Starcoins</h3>
+            <p>es un criptomoneda que se utiliza en los casinos para regular las transacciones de pago dentro del casino. Es flexible y está actualizada con las últimas tecnologías.</p>
+          </div>
+          <div class="term-media">
+            Imagen/Video de Starcoins
+          </div>
+        </div>
+
+        <!-- Altcoin -->
+        <div class="glossary-term reverse">
+          <div class="term-content">
+            <h3>Altcoin</h3>
+            <p>Una altcoin hace referencia a cualquier criptomoneda que no es Bitcoin y que engloba en un mismo término a criptomonedas y tokens. Suele ser un término sencillo usado para destacar que además de bitcoin se admiten/soportan otras criptomonedas.</p>
+          </div>
+          <div class="term-media">
+            Imagen/Video de Altcoin
+          </div>
+        </div>
+
+        <!-- Deep Web -->
+        <div class="glossary-term">
+          <div class="term-content">
+            <h3>Deep Web</h3>
+            <p>es el contenido de internet que no está indexado por los motores de búsqueda convencionales, debido a diversos factores. El término se atribuye al informático Mike Bergman. Es el opuesto al Internet superficial.</p>
+          </div>
+          <div class="term-media">
+            Imagen/Video de Deep Web
+          </div>
+        </div>
+
+        <!-- Exchange -->
+        <div class="glossary-term reverse">
+          <div class="term-content">
+            <h3>Exchange</h3>
+            <p>Los exchanges de criptomonedas, también conocidos como plataformas o mercados de intercambio, son plataformas digitales que permiten intercambiar monedas digitales por dinero fiat y/u otras criptomonedas o mercancías.</p>
+          </div>
+          <div class="term-media">
+            Imagen/Video de Exchange
+          </div>
+        </div>
+
+        <!-- Hacker -->
+        <div class="glossary-term">
+          <div class="term-content">
+            <h3>Hacker</h3>
+            <p>cualquier persona que tenga un alto nivel de comprensión de informática, incluidos programadores y expertos en ciberseguridad. Sin embargo, en la terminología popular, un hacker es una persona que busca explotar las vulnerabilidades de un sistema informático o red. Estos también se conocen como hackers de seguridad.</p>
+          </div>
+          <div class="term-media">
+            Imagen/Video de Hacker
+          </div>
+        </div>
+
+        <!-- Hash/txid -->
+        <div class="glossary-term reverse">
+          <div class="term-content">
+            <h3>Hash/txid</h3>
+            <p>el nombre de hash se usa para identificar una función criptográfica muy importante en el mundo informático. Estas funciones tienen como objetivo primordial codificar datos para formar una cadena de caracteres única. Todo ello sin importar la cantidad de datos introducidos inicialmente en la función. Estas funciones sirven para asegurar la autenticidad de datos, almacenar de forma segura contraseñas, y la firma de documentos electrónicos.</p>
+          </div>
+          <div class="term-media">
+            Imagen/Video de Hash
+          </div>
+        </div>
+
+        <!-- Hash rate -->
+        <div class="glossary-term">
+          <div class="term-content">
+            <h3>Hash rate</h3>
+            <p>unidad de medida de la potencia de procesamiento de la red Bitcoin. La red Bitcoin debe hacer intensivas operaciones matemáticas por razones de seguridad. Cuando la red alcanza un hash rate de 10 TH/s significa que puede hacer 10 billones de cálculos por segundo.</p>
+          </div>
+          <div class="term-media">
+            Imagen/Video de Hash Rate
+          </div>
+        </div>
+
+        <!-- Interoperabilidad -->
+        <div class="glossary-term reverse">
+          <div class="term-content">
+            <h3>Interoperabilidad</h3>
+            <p>se define como la habilidad de dos o más sistemas o componentes para intercambiar información y utilizar esta información intercambiada. En el caso de las blockchains, su interoperabilidad busca la capacidad de intercambiar datos entre diferentes block chains sin problemas, como si no hubieran límites.</p>
+          </div>
+          <div class="term-media">
+            Imagen/Video de Interoperabilidad
+          </div>
+        </div>
+
+        <!-- Margin trading -->
+        <div class="glossary-term">
+          <div class="term-content">
+            <h3>Margin trading</h3>
+            <p>es un método de trading de activos utilizando fondos provistos por un tercero. Cuando se comparan con las cuentas de trading normales, las cuentas de margen permiten a los traders acceder a mayores sumas de capital, lo que les permite aprovechar sus posiciones. Esencialmente, el margin trading amplifica los resultados de trading para que los traders puedan obtener mayores ganancias en las operaciones exitosas.</p>
+          </div>
+          <div class="term-media">
+            Imagen/Video de Margin Trading
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-links">
+        <a href="#">Términos de Servicio</a>
+        <a href="#">Política de Privacidad</a>
+        <a href="#">Soporte</a>
+        <a href="#">API</a>
+        <a href="#">Blog</a>
+      </div>
+      <p>&copy; 2025 CriptoInvestment. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Cargar animaciones al hacer scroll
+    document.addEventListener('DOMContentLoaded', function() {
+      const elements = document.querySelectorAll('.fade-in');
+      elements.forEach(el => {
+        el.style.animation = 'fadeInUp 0.8s ease-out';
+      });
+    });
+  </script>
+</body>
+</html>
