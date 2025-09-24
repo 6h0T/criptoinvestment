@@ -420,9 +420,77 @@
     }
 
     /* Estilos para las tarjetas de criptomonedas */
-    .crypto-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 25px rgba(0, 153, 255, 0.15);
+    .highlight-card {
+      opacity: 0;
+      transform: translateY(50px) rotateX(15deg);
+      animation: slideInUp 0.8s ease-out forwards;
+      cursor: pointer;
+    }
+
+    .highlight-card:nth-child(1) { animation-delay: 0.1s; }
+    .highlight-card:nth-child(2) { animation-delay: 0.2s; }
+    .highlight-card:nth-child(3) { animation-delay: 0.3s; }
+    .highlight-card:nth-child(4) { animation-delay: 0.4s; }
+
+    .highlight-card:hover {
+      transform: translateY(-10px) rotateX(0deg) scale(1.02);
+      background: rgba(255, 255, 255, 0.08) !important;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 30px rgba(255, 255, 255, 0.1);
+    }
+
+    .highlight-card .icon-circle {
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .highlight-card:hover .icon-circle {
+      transform: scale(1.2) rotate(5deg);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    .highlight-card h4 {
+      transition: color 0.3s ease;
+    }
+
+    .highlight-card:hover h4 {
+      color: #00FF99 !important;
+    }
+
+    .highlight-card p {
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+
+    .highlight-card:hover p {
+      color: rgba(255, 255, 255, 0.95) !important;
+      transform: translateX(5px);
+    }
+
+    .highlight-card .border-accent {
+      transition: all 0.4s ease;
+    }
+
+    .highlight-card:hover .border-accent {
+      transform: scaleY(1.5);
+      opacity: 0.8;
+    }
+
+    @keyframes slideInUp {
+      from {
+        opacity: 0;
+        transform: translateY(50px) rotateX(15deg);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) rotateX(0deg);
+      }
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    .highlight-card:hover .icon-circle {
+      animation: pulse 2s infinite;
     }
   </style>
 </head>
@@ -450,13 +518,103 @@
       <div class="hero-content">
         <h1>Compra Criptomonedas de Forma Segura</h1>
         <p>
-          Accede al mundo de las criptomonedas con la confianza y seguridad que solo CriptoInvestment puede ofrecerte. 
-          Nuestro equipo de expertos te acompaña en cada paso, desde tu primera compra hasta estrategias avanzadas de inversión.
+          Tu puerta de entrada al mundo cripto
+          En CriptoInvestments creemos que invertir en activos digitales no tiene que ser complicado. Por eso, diseñamos una experiencia simple, rápida y confiable para que accedas a las criptomonedas que más te interesan.
+
         </p>
-        <p>
-          Con nuestra plataforma autorizada como PSAV y alianzas estratégicas con exchanges reconocidos, 
-          garantizamos transacciones transparentes, seguras y al mejor precio del mercado.
-        </p>
+      </div>
+    </section>
+
+    <!-- Cómo empezar en 3 pasos -->
+    <section class="section fade-in" style="background: #F8F9FA; padding: 80px 20px; width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw;">
+      <div style="max-width: 1280px; margin: 0 auto; padding: 0 20px;">
+        <div style="text-align: center; margin-bottom: 60px;">
+          <h6 style="color: #0099FF; margin-bottom: 20px; opacity: 0.9;">🚀 PROCESO SIMPLE</h6>
+          <h2 style="color: #001726; margin-bottom: 30px;">Cómo empezar en 3 pasos</h2>
+        </div>
+        
+        <div class="grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px;">
+          <div class="card" style="background: #FFFFFF; padding: 30px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); text-align: center; position: relative; transition: transform 0.3s ease;">
+            <div style="width: 80px; height: 80px; background: linear-gradient(135deg, #0099FF, #00CCFF); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 25px; color: #FFFFFF; font-size: 32px; font-weight: 700;">1</div>
+            <h3 style="margin-bottom: 20px; color: #001726;">Registrate</h3>
+            <p style="color: #727272; line-height: 1.6;">Registrate gratis en nuestra plataforma en pocos minutos.</p>
+          </div>
+          
+          <div class="card" style="background: #FFFFFF; padding: 30px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); text-align: center; position: relative; transition: transform 0.3s ease;">
+            <div style="width: 80px; height: 80px; background: linear-gradient(135deg, #00FF99, #00CC7A); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 25px; color: #001726; font-size: 32px; font-weight: 700;">2</div>
+            <h3 style="margin-bottom: 20px; color: #001726;">Carga fondos</h3>
+            <p style="color: #727272; line-height: 1.6;">Carga fondos de manera segura con los métodos habilitados.</p>
+          </div>
+          
+          <div class="card" style="background: #FFFFFF; padding: 30px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); text-align: center; position: relative; transition: transform 0.3s ease;">
+            <div style="width: 80px; height: 80px; background: linear-gradient(135deg, #9900FF, #BB33FF); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 25px; color: #FFFFFF; font-size: 32px; font-weight: 700;">3</div>
+            <h3 style="margin-bottom: 20px; color: #001726;">Comenzá a invertir</h3>
+            <p style="color: #727272; line-height: 1.6;">Elegí tu cripto favorita y comenzá a invertir al instante.</p>
+          </div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 50px;">
+          <a href="https://pro.criptoinvestments.com/es/home" class="btn" style="font-size: 18px; padding: 15px 30px;" target="_blank">Empezar Ahora</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Por qué elegir CriptoInvestments - Highlight -->
+    <section class="section fade-in" style="background: #001726; padding: 80px 20px; width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw;">
+      <div style="max-width: 1280px; margin: 0 auto; padding: 0 20px;">
+        <div style="text-align: center; margin-bottom: 60px;">
+          <h2 style="color: #FFFFFF; margin-bottom: 40px;">¿Por qué elegir CriptoInvestments?</h2>
+        </div>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px;">
+          <div class="highlight-card" style="background: rgba(255, 255, 255, 0.05); padding: 30px; border-radius: 15px; border-left: 4px solid #0099FF; backdrop-filter: blur(10px);">
+            <div style="display: flex; align-items: flex-start; gap: 15px;">
+              <div class="icon-circle" style="width: 50px; height: 50px; background: linear-gradient(135deg, #0099FF, #00CCFF); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                <span style="color: #FFFFFF; font-size: 20px;">🔒</span>
+              </div>
+              <div>
+                <h4 style="color: #FFFFFF; margin: 0 0 10px 0; font-size: 18px;">Seguridad en cada operación:</h4>
+                <p style="color: rgba(255, 255, 255, 0.8); margin: 0; line-height: 1.6;">utilizamos protocolos de encriptación y custodia de nivel bancario.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="highlight-card" style="background: rgba(255, 255, 255, 0.05); padding: 30px; border-radius: 15px; border-left: 4px solid #00FF99; backdrop-filter: blur(10px);">
+            <div style="display: flex; align-items: flex-start; gap: 15px;">
+              <div class="icon-circle" style="width: 50px; height: 50px; background: linear-gradient(135deg, #00FF99, #00CC7A); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                <span style="color: #001726; font-size: 20px;">💰</span>
+              </div>
+              <div>
+                <h4 style="color: #FFFFFF; margin: 0 0 10px 0; font-size: 18px;">Precios claros y en tiempo real:</h4>
+                <p style="color: rgba(255, 255, 255, 0.8); margin: 0; line-height: 1.6;">consultá cotizaciones actualizadas antes de cada movimiento.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="highlight-card" style="background: rgba(255, 255, 255, 0.05); padding: 30px; border-radius: 15px; border-left: 4px solid #9900FF; backdrop-filter: blur(10px);">
+            <div style="display: flex; align-items: flex-start; gap: 15px;">
+              <div class="icon-circle" style="width: 50px; height: 50px; background: linear-gradient(135deg, #9900FF, #BB33FF); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                <span style="color: #FFFFFF; font-size: 20px;">⚡</span>
+              </div>
+              <div>
+                <h4 style="color: #FFFFFF; margin: 0 0 10px 0; font-size: 18px;">Operaciones simples y rápidas:</h4>
+                <p style="color: rgba(255, 255, 255, 0.8); margin: 0; line-height: 1.6;">comprá o vendé con apenas unos clics.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="highlight-card" style="background: rgba(255, 255, 255, 0.05); padding: 30px; border-radius: 15px; border-left: 4px solid #00CCFF; backdrop-filter: blur(10px);">
+            <div style="display: flex; align-items: flex-start; gap: 15px;">
+              <div class="icon-circle" style="width: 50px; height: 50px; background: linear-gradient(135deg, #00CCFF, #0099FF); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                <span style="color: #FFFFFF; font-size: 20px;">👥</span>
+              </div>
+              <div>
+                <h4 style="color: #FFFFFF; margin: 0 0 10px 0; font-size: 18px;">Acompañamiento experto:</h4>
+                <p style="color: rgba(255, 255, 255, 0.8); margin: 0; line-height: 1.6;">nuestro equipo está para ayudarte en cada paso.</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -768,11 +926,35 @@
   </footer>
 
   <script>
-    // Cargar animaciones al hacer scroll
-    document.addEventListener('DOMContentLoaded', function() {
-      const elements = document.querySelectorAll('.fade-in');
-      elements.forEach(el => {
-        el.style.animation = 'fadeInUp 0.8s ease-out';
+    // Animaciones de entrada al viewport para tarjetas highlight
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const highlightCards = document.querySelectorAll('.highlight-card');
+    const cardObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.animationPlayState = 'running';
+        }
+      });
+    }, observerOptions);
+
+    highlightCards.forEach(card => {
+      card.style.animationPlayState = 'paused';
+      cardObserver.observe(card);
+    });
+
+    // Efectos de sonido simulados (opcional)
+    highlightCards.forEach((card, index) => {
+      card.addEventListener('mouseenter', () => {
+        // Aquí podrías agregar efectos de sonido si lo deseas
+        card.style.transform = 'translateY(-10px) rotateX(0deg) scale(1.02)';
+      });
+
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'translateY(0) rotateX(0deg) scale(1)';
       });
     });
 

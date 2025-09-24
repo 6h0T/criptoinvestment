@@ -177,19 +177,38 @@
     /* Hero Section */
     .hero {
       position: relative;
-      min-height: 30vh;
+      min-height: 60vh;
       display: flex;
       align-items: center;
-      justify-content: center;
-      text-align: center;
       color: #FFFFFF;
-      padding: 130px 20px 50px;
+      padding: 130px 20px 80px;
       background: linear-gradient(135deg, #001726 0%, #0099FF 50%, #00FF99 100%);
     }
 
     .hero-content {
-      max-width: 800px;
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
     }
+
+    .hero-text {
+      text-align: left;
+    }
+
+    .hero-image {
+      text-align: right;
+    }
+
+    .hero-image img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 15px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+
 
     .hero h1 {
       font-size: 73px;
@@ -201,6 +220,54 @@
       font-size: 20px;
       margin-bottom: 30px;
       opacity: 0.9;
+    }
+
+    /* Nueva Hero Section con layout izquierdo-derecho */
+    .hero-secondary {
+      position: relative;
+      min-height: 50vh;
+      display: flex;
+      align-items: center;
+      color: #001726;
+      padding: 60px 20px;
+      background: transparent;
+    }
+
+    .hero-secondary-content {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .hero-secondary-text {
+      text-align: left;
+    }
+
+    .hero-secondary-image {
+      text-align: right;
+    }
+
+    .hero-secondary-image img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 15px;
+    }
+
+    .hero-secondary h2 {
+      font-size: 48px;
+      color: #001726;
+      margin-bottom: 20px;
+      line-height: 1.2;
+    }
+
+    .hero-secondary p {
+      font-size: 18px;
+      line-height: 1.6;
+      margin-bottom: 30px;
+      color: #727272;
     }
 
     /* Secciones */
@@ -244,6 +311,193 @@
       margin-bottom: 20px;
     }
 
+    /* Estilos mejorados para tarjetas de beneficios */
+    .section[style*="background: #F2F2F2;"] .card {
+      background: #FFFFFF;
+      padding: 40px 30px;
+      border-radius: 16px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+      text-align: center;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 200px;
+    }
+
+    .section[style*="background: #F2F2F2;"] .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+      border-color: rgba(0, 153, 255, 0.2);
+    }
+
+    .section[style*="background: #F2F2F2;"] .card h3 {
+      font-size: 22px;
+      margin-bottom: 20px;
+      line-height: 1.3;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .section[style*="background: #F2F2F2;"] .card p {
+      font-size: 16px;
+      line-height: 1.6;
+      color: #555555;
+      margin: 0;
+      font-weight: 500;
+    }
+
+    .section[style*="background: #F2F2F2;"] .card .icon {
+      font-size: 28px;
+      margin-bottom: 15px;
+      display: block;
+    }
+
+    /* Nueva Hero Section con texto a la derecha */
+    .hero-fci {
+      position: relative;
+      min-height: 60vh;
+      display: flex;
+      align-items: center;
+      color: #001726;
+      padding: 60px 20px;
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    }
+
+    .hero-fci-content {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .hero-fci-image {
+      text-align: left;
+    }
+
+    .hero-fci-text {
+      text-align: left;
+    }
+
+    .hero-fci-image img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .hero-fci h2 {
+      font-size: 42px;
+      color: #001726;
+      margin-bottom: 25px;
+      line-height: 1.2;
+      font-weight: 700;
+    }
+
+    .hero-fci .subtitle {
+      font-size: 24px;
+      color: #0099FF;
+      margin-bottom: 30px;
+      font-weight: 600;
+    }
+
+    .hero-fci .features {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .hero-fci .features li {
+      font-size: 18px;
+      line-height: 1.6;
+      margin-bottom: 15px;
+      color: #555555;
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-start;
+      gap: 12px;
+    }
+
+    .hero-fci .features li::before {
+      content: '✓';
+      color: #0099FF;
+      font-weight: bold;
+      font-size: 20px;
+    }
+
+    /* Nueva Hero Section para Criptomonedas con texto a la izquierda */
+    .hero-cripto {
+      position: relative;
+      min-height: 60vh;
+      display: flex;
+      align-items: center;
+      color: #001726;
+      padding: 60px 20px;
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    }
+
+    .hero-cripto-content {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .hero-cripto-text {
+      text-align: left;
+      color: #001726;
+    }
+
+    .hero-cripto-image {
+      text-align: right;
+    }
+
+    .hero-cripto-image img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .hero-cripto .subtitle {
+      font-size: 20px;
+      color: #0099FF;
+      margin-bottom: 30px;
+      line-height: 1.5;
+      font-weight: 500;
+    }
+
+    .hero-cripto .features {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .hero-cripto .features li {
+      font-size: 18px;
+      color: #001726;
+      margin-bottom: 12px;
+      padding-left: 25px;
+      position: relative;
+      line-height: 1.6;
+    }
+
+    .hero-cripto .features li::before {
+      content: '🚀';
+      position: absolute;
+      left: 0;
+      top: 2px;
+      font-size: 18px;
+    }
+
     /* Footer */
     .footer {
       background: #001726;
@@ -262,6 +516,105 @@
       .hero h1 { font-size: 44px; }
       .nav { display: none; }
       .grid { grid-template-columns: 1fr; }
+      .hero-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        text-align: center;
+      }
+      .hero-text {
+        text-align: center;
+      }
+      .hero-image {
+        text-align: center;
+      }
+      .hero-secondary-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        text-align: center;
+      }
+      .hero-secondary-text {
+        text-align: center;
+      }
+      .hero-secondary-image {
+        text-align: center;
+      }
+      .hero-secondary h2 {
+        font-size: 36px;
+      }
+      /* Responsive para tarjetas de beneficios */
+      .section[style*="background: #F2F2F2;"] .card {
+        grid-column: span 2;
+      }
+    }
+
+    @media (max-width: 1024px) {
+      .hero-content {
+        gap: 40px;
+      }
+      .hero-secondary-content {
+        gap: 40px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      /* Responsive para tarjetas de beneficios en móviles */
+      .section[style*="background: #F2F2F2;"] .card {
+        grid-column: span 1;
+        min-height: 180px;
+        padding: 30px 20px;
+      }
+      .section[style*="background: #F2F2F2;"] .card h3 {
+        font-size: 20px;
+        margin-bottom: 15px;
+      }
+      .section[style*="background: #F2F2F2;"] .card p {
+        font-size: 15px;
+      }
+      .section[style*="background: #F2F2F2;"] .card .icon {
+        font-size: 24px;
+        margin-bottom: 12px;
+      }
+      /* Responsive para hero FCI */
+      .hero-fci-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .hero-fci-image {
+        text-align: center;
+      }
+      .hero-fci-text {
+        text-align: left;
+      }
+      .hero-fci h2 {
+        font-size: 32px;
+      }
+      .hero-fci .subtitle {
+        font-size: 20px;
+      }
+      .hero-fci .features li {
+        justify-content: flex-start;
+        font-size: 16px;
+      }
+      /* Responsive para hero Cripto */
+      .hero-cripto-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .hero-cripto-image {
+        text-align: center;
+      }
+      .hero-cripto-text {
+        text-align: left;
+      }
+      .hero-cripto h2 {
+        font-size: 32px;
+      }
+      .hero-cripto .subtitle {
+        font-size: 20px;
+      }
+      .hero-cripto .features li {
+        font-size: 16px;
+      }
     }
 
     /* Animaciones */
@@ -312,46 +665,84 @@
     <!-- Hero Section -->
     <section class="hero fade-in">
       <div class="hero-content">
-        <h1>Opciones de Mercado</h1>
-        <p>Descubre nuestros fondos de inversión especializados en criptomonedas</p>
+        <h1>Opciones de mercado: diversifica tu inversión en un solo lugar</h1>
+        <p>Conocé todas las alternativas que Cripto Investments pone a tu disposición para que armes una estrategia adaptada a tu perfil y objetivos.</p>
       </div>
     </section>
 
-    <!-- Qué son los Fondos de Inversión -->
-    <section class="section fade-in">
-      <div class="container">
-        <h2 style="text-align: center; margin-bottom: 30px;">¿Qué son los Fondos de Inversión en Cripto?</h2>
-        <div style="max-width: 900px; margin: 0 auto; text-align: center;">
-          <p style="font-size: 18px; line-height: 1.6; margin-bottom: 40px;">
-            Los fondos de inversión en criptomonedas son vehículos de inversión colectiva que permiten a los inversores 
-            acceder a una cartera diversificada de activos digitales sin necesidad de gestionar directamente las inversiones. 
-            Nuestros fondos están gestionados por profesionales especializados que toman decisiones estratégicas basadas 
-            en análisis técnico y fundamental del mercado cripto.
-          </p>
+    <!-- Nueva Hero Section con layout izquierdo-derecho -->
+    <section class="hero-secondary fade-in">
+      <div class="hero-secondary-content">
+        <div class="hero-secondary-text">
+          <h2>Diversifica tu estrategia de inversión</h2>
+          <p>No todos los inversores buscan lo mismo. Por eso, además de criptomonedas, en CriptoInvestments te ofrecemos diferentes vehículos financieros que te permiten equilibrar riesgo y rentabilidad. Nuestro propósito es que tengas el panorama completo del mercado, con herramientas claras y accesibles para decidir dónde poner tu dinero.</p>
+        </div>
+        <div class="hero-secondary-image">
+          <img src="https://images.pexels.com/photos/28165814/pexels-photo-28165814.jpeg?_gl=1*zh9f44*_ga*MTM0MjY0MDU3LjE3NTAyODU4OTI.*_ga_8JE65Q40S6*czE3NTg3MjczNjAkbzE5JGcxJHQxNzU4NzI4MjQxJGo1OSRsMCRoMA.." alt="Diversifica tu estrategia de inversión">
         </div>
       </div>
     </section>
 
-    <!-- Ventajas de Invertir en Fondos -->
+    <!-- Hero Section Fondos Comunes de Inversión -->
+    <section class="hero-fci fade-in">
+      <div class="hero-fci-content">
+        <div class="hero-fci-image">
+          <img src="https://images.pexels.com/photos/159888/pexels-photo-159888.jpeg?_gl=1*1h0gdkv*_ga*MTM0MjY0MDU3LjE3NTAyODU4OTI.*_ga_8JE65Q40S6*czE3NTg3MjczNjAkbzE5JGcxJHQxNzU4NzMwMDUxJGoxOCRsMCRoMA.." alt="Fondos Comunes de Inversión">
+        </div>
+        <div class="hero-fci-text">
+          <h2>Fondos Comunes de Inversión (FCI)</h2>
+          <div class="subtitle">Accedé a una cartera diversificada sin necesidad de manejar cada activo por separado.</div>
+          <ul class="features">
+            <li>Administración profesional.</li>
+            <li>Bajo monto inicial.</li>
+            <li>Ideal para quienes buscan estabilidad y menor exposición a la volatilidad del mercado cripto.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Hero Section Criptomonedas -->
+    <section class="hero-cripto fade-in">
+      <div class="hero-cripto-content">
+        <div class="hero-cripto-text">
+          <h2>Criptomonedas</h2>
+          <div class="subtitle">Invertí en los principales activos digitales con información en tiempo real.</div>
+          <ul class="features">
+            <li>Bitcoin, Ethereum y más.</li>
+            <li>Oportunidad de alto rendimiento.</li>
+            <li>Perfecto para quienes desean exposición directa a la innovación tecnológica.</li>
+          </ul>
+        </div>
+        <div class="hero-cripto-image">
+          <img src="https://images.pexels.com/photos/730547/pexels-photo-730547.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Criptomonedas">
+        </div>
+      </div>
+    </section>
+
+    <!-- Beneficios de nuestras opciones de mercado -->
     <section class="section fade-in" style="background: #F2F2F2;">
       <div class="container">
-        <h2 style="text-align: center; margin-bottom: 50px;">Ventajas de Nuestros Fondos</h2>
-        <div class="grid">
+        <h2 style="text-align: center; margin-bottom: 50px;">Beneficios de nuestras opciones de mercado</h2>
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; max-width: 1200px; margin: 0 auto;">
           <div class="card">
-            <h3 style="color: #0099FF;">🎯 Gestión Profesional</h3>
-            <p>Nuestro equipo de analistas especializados gestiona activamente las carteras, optimizando el rendimiento y minimizando riesgos.</p>
+            <div class="icon" style="color: #0099FF;">🎯</div>
+            <h3 style="color: #0099FF;">Diversificación inteligente</h3>
+            <p>combina cripto con instrumentos tradicionales.</p>
           </div>
           <div class="card">
-            <h3 style="color: #00FF99;">📊 Diversificación</h3>
-            <p>Accede a una amplia gama de criptomonedas y estrategias de inversión con una sola inversión.</p>
+            <div class="icon" style="color: #00FF99;">💰</div>
+            <h3 style="color: #00FF99;">Accesibilidad</h3>
+            <p>podés empezar con montos bajos.</p>
           </div>
           <div class="card">
-            <h3 style="color: #9900FF;">⏰ Ahorro de Tiempo</h3>
-            <p>No necesitas dedicar tiempo al análisis diario del mercado. Nosotros nos encargamos de todo.</p>
+            <div class="icon" style="color: #9900FF;">📈</div>
+            <h3 style="color: #9900FF;">Información clara</h3>
+            <p>gráficos y reportes diseñados para que veas todo de un vistazo.</p>
           </div>
           <div class="card">
-            <h3 style="color: #0099FF;">🔒 Seguridad</h3>
-            <p>Fondos custodiados en plataformas seguras con los más altos estándares de protección.</p>
+            <div class="icon" style="color: #00CCFF;">⚡</div>
+            <h3 style="color: #00CCFF;">Flexibilidad</h3>
+            <p>elegí el nivel de riesgo que más se adapte a vos.</p>
           </div>
         </div>
       </div>
@@ -419,7 +810,7 @@
       <div class="container">
         <h2 style="text-align: center; margin-bottom: 50px;">Categorías Especiales</h2>
         <div style="display: flex; justify-content: center;">
-          <div class="card" style="max-width: 500px; text-align: center;">
+          <div class="card" style="max-width: 800px; text-align: center; padding: 40px;">
             <h3 style="color: #FF6B35;">🚀 Meme Coins</h3>
             <p style="margin-bottom: 20px;">
               Portfolio basado en las criptomonedas más difundidas en redes sociales – <strong style="color: #FF0066;">Riesgo ALTO</strong>. 
@@ -438,9 +829,17 @@
         <p style="font-size: 18px; margin-bottom: 40px; opacity: 0.9;">
           Utiliza nuestra herramienta de comparación para encontrar el fondo que mejor se adapte a tu perfil de inversor.
         </p>
-        <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+        <div style="text-align: left; max-width: 800px; margin: 0 auto 40px;">
+          <h3 style="color: #00FF99; margin-bottom: 20px; font-size: 24px;">Comparativa y análisis:</h3>
+          <ul style="list-style: none; padding: 0;">
+            <li style="margin-bottom: 15px; font-size: 18px; line-height: 1.6;">📊 Visualizá en gráficos interactivos el comportamiento de los FCI y de las criptomonedas.</li>
+            <li style="margin-bottom: 15px; font-size: 18px; line-height: 1.6;">📈 Evolución histórica.</li>
+            <li style="margin-bottom: 15px; font-size: 18px; line-height: 1.6;">💰 Precios actualizados.</li>
+            <li style="margin-bottom: 15px; font-size: 18px; line-height: 1.6;">🎯 Tendencias del mercado para tomar mejores decisiones.</li>
+          </ul>
+        </div>
+        <div style="display: flex; justify-content: center;">
           <a href="comparador-fondos.html" class="btn">Comparar Fondos</a>
-          <a href="https://pro.criptoinvestments.com/es/home" class="btn" style="background: transparent; border: 2px solid #00FF99; color: #00FF99;" target="_blank">Ver Todos los Fondos</a>
         </div>
       </div>
     </section>
